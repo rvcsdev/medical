@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <record id="speciality_gen" model="medical.specialty">
+            <field name="name">General Physician</field>
+            <field name="code">GP</field>
+        </record>
+
+        <record id="speciality_optha" model="medical.specialty">
+            <field name="name">Ophthalmologists‎</field>
+            <field name="code">OL</field>
+        </record>
+
+        <record id="speciality_pd" model="medical.specialty">
+            <field name="name">Pediatricians‎</field>
+            <field name="code">PD</field>
+        </record>
+
+        <record id="speciality_lep" model="medical.specialty">
+            <field name="name">Leprologists‎</field>
+            <field name="code">LP</field>
+        </record>
+
+        <record id="speciality_cardi" model="medical.specialty">
+            <field name="name">Cardiologists‎</field>
+            <field name="code">CD</field>
+        </record>
+
+        <record id="speciality_ana" model="medical.specialty">
+            <field name="name">Anesthesiologists‎</field>
+            <field name="code">AL</field>
+        </record>
+
+        <record id="speciality_skin" model="medical.specialty">
+            <field name="name">Dermatologists‎</field>
+            <field name="code">DL</field>
+        </record>
+
+        <record id="speciality_gyn" model="medical.specialty">
+            <field name="name">Gynaecologists‎</field>
+            <field name="code">GL</field>
+        </record>
+    </data>
+</odoo>
