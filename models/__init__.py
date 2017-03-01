@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Capstone Medical
+# Medical
 from . import models
 from . import product_product
 from . import medical_physician
@@ -9,21 +9,24 @@ from . import medical_patient
 from . import medical_appointment
 from . import medical_specialty
 
-# Capstone Medical Hospital
+# Medical Hospital
 from . import hospital
 
-# Capstone Medical Medicament
+# Medical Medicament
 from . import medicament
 
-# Capstone Medical Medication
+# Medical Medication
 from . import medication
 
-
-# Capstone Medical Disease
+# Medical Disease
 from . import disease
 
-# Capstone Medical Prescription
+# Medical Prescription
 from . import prescription
 
-# Capstone Medical Laboratory
+# Medical Laboratory
 from . import lab
+
+# Medical Imaging
+from . import imaging
+

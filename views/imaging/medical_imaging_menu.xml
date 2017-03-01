@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="medical_root_imaging" name="Imaging"
+            parent="medical.medical_root_sub" sequence="15" />
+
+        <menuitem id="medical_imaging_test_type"
+            parent="medical_root_imaging" sequence="10"
+            action="medical_imaging_test_type_action" />
+
+        <menuitem id="medical_imaging_test"
+            parent="medical_root_imaging" sequence="20"
+            action="medical_imaging_test_action" />
+
+    </data>
+</odoo>

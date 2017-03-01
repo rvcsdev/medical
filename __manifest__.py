@@ -14,6 +14,7 @@
         - Medical Disease
         - Medical Prescription
         - Medical Laboratory
+        - Medical Imaging
     """,
 
     'author': "Capstone Solutions Inc.",
@@ -76,6 +77,9 @@
         'views/lab/medical_lab_patient_view.xml',
         'views/lab/medical_lab_medical_patient_view.xml',
         'views/lab/medical_lab_menu.xml',
+        'views/imaging/medical_imaging_test_type_view.xml',
+        'views/imaging/medical_imaging_test_view.xml',
+        'views/imaging/medical_imaging_menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
