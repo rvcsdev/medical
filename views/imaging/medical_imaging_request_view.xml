@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        
+        <record id="medical_imaging_request_search" model="ir.ui.view">
+            <field name="name">medical.imaging.request.search</field>
+            <field name="model">medical.imaging.request</field>
+            <field name="arch" type="xml">
+                <search string="Medical Imaging Request">
+                    <field name="name"/>
+                    <!--<field name="test_date" />-->
+                    <field name="patient_id" />
+                    <field name="physician_id" />
+                    <field name="is_urgent" />
+                    <field name="state" />
+                </search>
+            </field>
+        </record>
+
+        <record id="medical_imaging_request_tree" model="ir.ui.view">
+            <field name="name">medical.imaging.request.tree</field>
+            <field name="model">medical.imaging.request</field>
+            <field name="arch" type="xml">
+                <tree string="Medical Imaging Request">
+                    <field name="name"/>
+                    <field name="test_date" />
+                    <field name="patient_id" />
+                    <field name="physician_id" />
+                    <field name="is_urgent" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="medical_imaging_request_form" model="ir.ui.view">
+            <field name="name">medical.imaging.request.form</field>
+            <field name="model">medical.imaging.request</field>
+            <field name="arch" type="xml">
+                <form string="Medical Imaging Request">
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary" states="draft" />
+                        
+                        <button name="action_create_result" string="Create Result" type="object" states="confirmed" class="btn-primary" />
+
+                        <button name="action_cancel" string="Cancel" type="object" states="draft,confirmed" />
+                        
+                        <field name="state" widget="statusbar" options="{'fold_field': 'fold'}" />
+                    </header>
+                    <sheet>
+                         <div class="oe_title" name="title">
+                            <label for="name" class="edit_only"/>
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+
+                        <div class="oe_right oe_button_box" name="buttons"/>
+
+                        <group name="data">
+                            <group>
+                                <field name="test_date" />
+                                 <field name="physician_id" />
+                            </group>
+                            <group>
+                                <field name="patient_id" />
+                                <field name="is_urgent" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="test_ids"/>
+                        </group>
+                        <group>
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="medical_imaging_request_action" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Medical Imaging Request</field>
+            <field name="res_model">medical.imaging.request</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">\{}</field>
+            <field name="search_view_id" ref="medical_imaging_request_search" />
+        </record>
+
+    </data>
+</odoo>

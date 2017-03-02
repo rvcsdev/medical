@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        
+        <record id="medical_patient_hospitalization_search" model="ir.ui.view">
+            <field name="name">medical.patient.hospitalization.search</field>
+            <field name="model">medical.patient.hospitalization</field>
+            <field name="arch" type="xml">
+                <search string="Medical Patient Hospitalization">
+                    <field name="name" />
+                    <field name="patient_id" />
+                    <field name="admission_date" />
+                    <field name="expected_discharge_date" />
+                    <field name="hospital_bed_id" />
+                    <field name="admission_type" />
+                    <field name="state" />
+                </search>
+            </field>
+        </record>
+        
+        <record id="medical_patient_hospitalization_tree" model="ir.ui.view">
+            <field name="name">medical.patient.hospitalization.tree</field>
+            <field name="model">medical.patient.hospitalization</field>
+            <field name="arch" type="xml">
+                <tree string="Medical Patient Hospitalization">
+                    <field name="name" />
+                    <field name="patient_id" />
+                    <field name="admission_date" />
+                    <field name="expected_discharge_date" />
+                    <field name="hospital_bed_id" />
+                    <field name="admission_type" />
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="medical_patient_hospitalization_form" model="ir.ui.view">
+            <field name="name">medical.patient.hospitalization.form</field>
+            <field name="model">medical.patient.hospitalization</field>
+            <field name="arch" type="xml">
+                <form string="Medical Patient Hospitalization">
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary" states="draft" />
+                        <!--<button name="action_confirm" string="Confirm" type="object" class="btn-primary" />-->
+
+                        <button name="action_admission" string="Patient Admission" type="object" states="confirmed" class="btn-primary" />
+
+                        <button name="action_cancel" string="Cancel" type="object" states="draft,confirmed" />
+                        <field name="state" widget="statusbar" options="{'fold_field': 'fold'}" />
+                    </header>
+                    <sheet>
+                        <div class="oe_title" name="title">
+                            <label for="name" class="edit_only"/>
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+
+                        <div class="oe_right oe_button_box" name="buttons"/>
+
+                        <group name="data">
+                            <group>
+                                <field name="patient_id" />
+                                <field name="admission_date" />
+                                <field name="attending_physician" />
+                                <field name="admission_type" />
+                            </group>
+                            <group>
+                                <field name="hospital_bed_id" />
+                                <field name="expected_discharge_date" />
+                                <field name="operating_physician" />
+                                <field name="admission_reason" />
+                                <!--<field name="state" />-->
+                            </group>
+                        </group>
+                        <group>
+                            <field name="extra_info" />
+                        </group>
+                        <group>
+                            <field name="transfer_history_ids" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="medical_patient_hospitalization_transfer_history_tree" model="ir.ui.view">
+            <field name="name">medical.patient.hospitalization.transfer.history.tree</field>
+            <field name="model">medical.patient.hospitalization.transfer.history</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="transfer_history_date" />
+                <field name="transfer_from" />
+                <field name="transfer_to" />
+                <field name="transfer_reason" />
+            </field>
+        </record>
+
+        <!--<record id="medical_patient_hospitalization_transfer_history_form" model="ir.ui.view">
+            <field name="name">medical.patient.hospitalization.transfer.history.form</field>
+            <field name="model">medical.patient.hospitalization.transfer.history</field>
+            <field name="arch" type="xml">
+                <form string="Patient Hospitalization Transfer History">
+                    <header/>
+                    <sheet>
+                        <group>
+                            <field name="transfer_history_date" />
+                            <field name="transfer_from" />
+                            <field name="transfer_to" />
+                            <field name="transfer_reason" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>-->
+
+        <record id="medical_patient_hospitalization_action" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Patient Hospitalization</field>
+            <field name="res_model">medical.patient.hospitalization</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">\{}</field>
+            <field name="search_view_id" ref="medical_patient_hospitalization_search" />
+        </record>
+        
+    </data>
+</odoo>

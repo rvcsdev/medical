@@ -5,7 +5,7 @@
     <menuitem id="medical_lab_root_menu"
               name="Laboratory"
               parent="medical.medical_root"
-              sequence="15"
+              sequence="40"
               />
     
     <menuitem id="medical_lab_patient_menu_root"

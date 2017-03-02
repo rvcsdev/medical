@@ -2,6 +2,7 @@
 <odoo>
     <data>
 
+        <!-- Medical Imaging Configuration -->
         <menuitem id="medical_root_imaging" name="Imaging"
             parent="medical.medical_root_sub" sequence="15" />
 
@@ -12,6 +13,15 @@
         <menuitem id="medical_imaging_test"
             parent="medical_root_imaging" sequence="20"
             action="medical_imaging_test_action" />
+
+
+        <!-- Medical Imaging -->
+        <menuitem id="medical_imaging_root" name="Imaging"
+            parent="medical_root" sequence="40" />
+
+        <menuitem id="medical_imaging_request" name="Imaging Request"
+            parent="medical_imaging_root" sequence="10" 
+            action="medical_imaging_request_action"/>
 
     </data>
 </odoo>

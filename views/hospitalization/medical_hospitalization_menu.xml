@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <menuitem id="medical_hospitalization_root" name="Inpatient Administration"
+            parent="medical_root" sequence="30" />
+
+        <menuitem id="medical_patient_hospitalization_menu" sequence="10"
+            parent="medical_hospitalization_root" action="medical_patient_hospitalization_action" />
+
+    </data>
+</odoo>

@@ -3,7 +3,7 @@
     <data>
 
         <menuitem id="medical_prescription_root" name="Prescription"
-            parent="medical.medical_root" sequence="30" />
+            parent="medical.medical_root" sequence="50" />
 
         <menuitem id="medical_prescription_order_menu" sequence="10"
             parent="medical_prescription_root" action="medical_prescription_order_action" />

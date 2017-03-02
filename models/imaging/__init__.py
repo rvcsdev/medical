@@ -3,3 +3,4 @@
 # Medical Imaging
 from . import medical_imaging_test_type
 from . import medical_imaging_test
+from . import medical_imaging_request

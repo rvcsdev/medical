@@ -15,6 +15,7 @@
         - Medical Prescription
         - Medical Laboratory
         - Medical Imaging
+        - Medical Patient Hospitalization Administration
     """,
 
     'author': "Capstone Solutions Inc.",
@@ -79,7 +80,10 @@
         'views/lab/medical_lab_menu.xml',
         'views/imaging/medical_imaging_test_type_view.xml',
         'views/imaging/medical_imaging_test_view.xml',
+        'views/imaging/medical_imaging_request_view.xml',
         'views/imaging/medical_imaging_menu.xml',
+        'views/hospitalization/medical_patient_hospitalization_view.xml',
+        'views/hospitalization/medical_hospitalization_menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

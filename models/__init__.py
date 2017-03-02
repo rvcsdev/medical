@@ -30,3 +30,6 @@ from . import lab
 # Medical Imaging
 from . import imaging
 
+# Medical medical_patient_hospitalization
+from . import hospitalization
+
