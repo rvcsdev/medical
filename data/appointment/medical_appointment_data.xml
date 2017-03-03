@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo noupdate="1">
+
+    <record model="medical.appointment.stage" id="APSP001">
+        <field name="name">New</field>
+        <field name="sequence">1</field>
+        <field name="requirements"></field>
+        <field name="fold">False</field>
+        <field name="is_default">True</field>
+    </record>
+
+    <record model="medical.appointment.stage" id="APSP002">
+        <field name="name">Confirmed</field>
+        <field name="sequence">2</field>
+        <field name="requirements"></field>
+        <field name="fold">False</field>
+        <field name="is_default">False</field>
+    </record>
+
+    <record model="medical.appointment.stage" id="APSP003">
+        <field name="name">Done</field>
+        <field name="sequence">3</field>
+        <field name="requirements"></field>
+        <field name="fold">False</field>
+        <field name="is_default">False</field>
+    </record>
+
+    <record model="medical.appointment.stage" id="APSP004">
+        <field name="name">Cancelled</field>
+        <field name="sequence">4</field>
+        <field name="requirements"></field>
+        <field name="fold">False</field>
+        <field name="is_default">False</field>
+    </record>
+    
+</odoo>

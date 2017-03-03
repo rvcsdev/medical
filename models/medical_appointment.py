@@ -23,7 +23,7 @@
 import time
 from datetime import datetime
 
-from odoo import models, fields, _
+from odoo import api, models, fields, _
 # from openerp.tools.translate import _
 from odoo import SUPERUSER_ID
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
@@ -57,26 +57,6 @@ class MedicalAppointment(models.Model):
     _name = 'medical.appointment'
     _description = "Medical Appointment"
 
-    STATES = {'draft': [('readonly', False)]}
-
-    user_id = fields.Many2one('res.users', 'Responsible', readonly=True, states=STATES)
-    patient_id = fields.Many2one('medical.patient', string='Patient', required=True, select=True, help='Patient Name')
-    name = fields.Char(size=256, string='Appointment ID', readonly=True)
-    appointment_date = fields.Datetime(string='Date and Time')
-    date_end = fields.Datetime(string='do not display')
-    duration = fields.Float('Duration')
-    physician_id = fields.Many2one('medical.physician', string='Physician', select=True, required=True, help='Physician\'s Name')
-    alias = fields.Char(size=256, string='Alias')
-    comments = fields.Text(string='Comments')
-    appointment_type = fields.Selection([('ambulatory', 'Ambulatory'), ('outpatient', 'Outpatient'),('inpatient', 'Inpatient'), ], string='Type')
-    institution_id = fields.Many2one('res.partner', string='Health Center', help='Medical Center', domain="[('is_institution', '=', True)]")
-    consultations = fields.Many2one('medical.physician.services', string='Consultation Services', help='Consultation Services', domain="[('physician_id', '=', physician_id)]")
-    urgency = fields.Selection([('a', 'Normal'), ('b', 'Urgent'), ('c', 'Medical Emergency'), ], string='Urgency Level')
-    specialty_id = fields.Many2one('medical.specialty', string='Specialty', help='Medical Specialty / Sector')
-    stage_id = fields.Many2one('medical.appointment.stage', 'Stage', track_visibility='onchange')
-    history_ids = fields.One2many('medical.appointment.history', 'appointment_id_history', 'History lines')
-    
-    
     def _get_default_stage_id(self, cr, uid, context=None):
         # """ Gives default stage_id """
         stage_ids = self.pool['medical.appointment.stage'].search(cr, uid, [('is_default', '=', True)], order='sequence', limit=1, context=context)
@@ -103,28 +83,26 @@ class MedicalAppointment(models.Model):
             fold[stage.id] = stage.fold or False
             return result, fold
 
-    # STATES = {'draft': [('readonly', False)]}
+    
+    name = fields.Char(string='Appointment ID', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
+    # name = fields.Char(string='Appointment ID', required=True)
+    STATES = {'draft': [('readonly', False)]}
 
-    # _columns = {
-    #     'user_id': fields.many2one('res.users', 'Responsible', readonly=True, states=STATES),
-    #     'patient_id': fields.many2one('medical.patient', string='Patient', required=True, select=True, help='Patient Name'),
-    #     'name': fields.char(size=256, string='Appointment ID', readonly=True),
-    #     'appointment_date': fields.datetime(string='Date and Time'),
-    #     'date_end': fields.datetime(string='do not display'),
-    #     'duration': fields.float('Duration'),
-    #     'physician_id': fields.many2one('medical.physician', string='Physician', select=True, required=True, help='Physician\'s Name'),
-    #     'alias': fields.char(size=256, string='Alias', ),
-    #     'comments': fields.text(string='Comments'),
-    #     'appointment_type': fields.selection(
-    #         [('ambulatory', 'Ambulatory'), ('outpatient', 'Outpatient'),
-    #          ('inpatient', 'Inpatient'), ], string='Type'),
-    #     'institution_id': fields.many2one('res.partner', string='Health Center', help='Medical Center', domain="[('is_institution', '=', True)]"),
-    #     'consultations': fields.many2one('medical.physician.services', string='Consultation Services', help='Consultation Services', domain="[('physician_id', '=', physician_id), ]"),
-    #     'urgency': fields.selection([('a', 'Normal'), ('b', 'Urgent'), ('c', 'Medical Emergency'), ], string='Urgency Level'),
-    #     'specialty_id': fields.many2one('medical.specialty', string='Specialty', help='Medical Specialty / Sector'),
-    #     'stage_id': fields.many2one('medical.appointment.stage', 'Stage', track_visibility='onchange'),
-    #     'history_ids': fields.one2many('medical.appointment.history', 'appointment_id_history', 'History lines'),
-    # }
+    user_id = fields.Many2one('res.users', 'Responsible', readonly=True, states=STATES)
+    patient_id = fields.Many2one('medical.patient', string='Patient', required=True, select=True, help='Patient Name')
+    appointment_date = fields.Datetime(string='Date and Time')
+    date_end = fields.Datetime(string='do not display')
+    duration = fields.Float('Duration')
+    physician_id = fields.Many2one('medical.physician', string='Physician', select=True, required=True, help='Physician\'s Name')
+    alias = fields.Char(size=256, string='Alias')
+    comments = fields.Text(string='Comments')
+    appointment_type = fields.Selection([('ambulatory', 'Ambulatory'), ('outpatient', 'Outpatient'),('inpatient', 'Inpatient'), ], string='Type')
+    institution_id = fields.Many2one('res.partner', string='Health Center', help='Medical Center', domain="[('is_institution', '=', True)]")
+    consultations = fields.Many2one('medical.physician.services', string='Consultation Services', help='Consultation Services', domain="[('physician_id', '=', physician_id)]")
+    urgency = fields.Selection([('a', 'Normal'), ('b', 'Urgent'), ('c', 'Medical Emergency'), ], string='Urgency Level')
+    specialty_id = fields.Many2one('medical.specialty', string='Specialty', help='Medical Specialty / Sector')
+    stage_id = fields.Many2one('medical.appointment.stage', 'Stage', track_visibility='onchange')
+    history_ids = fields.One2many('medical.appointment.history', 'appointment_id_history', 'History lines')
 
     _defaults = {
         'name': '/',
@@ -160,6 +138,21 @@ class MedicalAppointment(models.Model):
         current_appointments = self._get_appointments(cr, uid, physician_ids, institution_ids, date_start, date_end, context=context)
         if current_appointments:
             self.write(cr, uid, current_appointments, {'stage_id': review_stage_id})
+
+    @api.model
+    def create(self, values):
+        """
+            Create a new record for a model ModelName
+            @param values: provides a data for new record
+    
+            @return: returns a id of new record
+        """
+        if values.get('name', 'New') == 'New':
+            values['name'] = self.env['ir.sequence'].next_by_code('medical.appointment') or 'New'
+    
+        result = super(MedicalAppointment, self).create(values)
+    
+        return result
 
     # @api.model
     # def create(self, vals):

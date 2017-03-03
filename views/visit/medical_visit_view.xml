@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Visits Search View-->
+        <record model="ir.ui.view" id="medical_visit_search">
+            <field name="name">medical.visit.search</field>
+            <field name="model">medical.visit</field>
+            <field name="arch" type="xml">
+                <search string="Medical Visit">
+                    <field name="name"/>
+                    <field name="appointment_id"/>
+                    <field name="patient_id"/>
+                    <field name="physician_id"/>
+                    <field name="institution_id"/>
+                    <field name="extra_information"/>
+                </search>
+            </field>
+        </record>
+
+
+        <!-- Visits Form  View-->
+        <record model="ir.ui.view" id="medical_visit_form">
+            <field name="name">medical.visit.form</field>
+            <field name="model">medical.visit</field>
+            <field name="arch" type="xml">
+                <form string="Medical Visit">
+                    <header/>
+                    <sheet>
+                        <div class="oe_title" name="title">
+                            <label for="name" class="edit_only" />
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons"/>
+                        <group string="Appointment">
+                            <field name="appointment_id" />
+                        </group>
+                        <group string="General">
+                            <field name="patient_id"/>
+                            <field name="physician_id"/>
+                            <field name="actual_start"/>
+                            <field name="actual_end"/>
+                            <field name="institution_id"/>
+                            <field name="urgency"/>
+                        </group>
+                        <group string="Invoicing">
+                            <field name="is_invoice_exempt"/>
+                        </group>
+                        <group string="Patient Complaints">
+                            <field name="complaints"/>
+                        </group>
+                        <group string="Observations">
+                            <field name="observations"/>
+                        </group>
+                        <notebook>
+                            <page string="Medical Vitals">
+                            </page>
+                            <page string="Laboratory Prescriptions">
+                            </page>
+                            <page string="Imaging Prescriptions">
+                            </page>
+                            <page string="Medication Prescriptions">
+                            </page>
+                            <page string="Diagnosis">
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+                
+        <!-- Visits Tree View-->
+        <record model="ir.ui.view" id="medical_visit_tree">
+            <field name="name">medical.visit.tree</field>
+            <field name="model">medical.visit</field>
+            <field name="arch" type="xml">
+                <tree string="Medical Visit">
+                    <field name="name"/>
+                    <field name="appointment_id"/>
+                    <field name="patient_id"/>
+                    <field name="physician_id"/>
+                    <field name="institution_id"/>
+                    <field name="extra_information" />
+                </tree>
+            </field>
+        </record>
+
+                                            
+        <!-- Visits Action View-->
+        <record model="ir.actions.act_window" id="medical_visit_action">
+            <field name="name">Patient Visits</field>
+            <field name="res_model">medical.visit</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first visit</p>
+            </field>
+        </record>
+    </data>
+</openerp>

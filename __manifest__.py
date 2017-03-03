@@ -15,7 +15,8 @@
         - Medical Prescription
         - Medical Laboratory
         - Medical Imaging
-        - Medical Patient Hospitalization Administration
+        - Medical Outpatient Administration
+        - Medical Inpatient Administration
     """,
 
     'author': "Capstone Solutions Inc.",
@@ -40,6 +41,7 @@
         'data/medicament/medical_medicament_drug_form_data.xml',
         'data/medicament/medical_medicament_drug_route_data.xml',
         'data/medication/medical_medication_dosage_data.xml',
+        'data/appointment/medical_appointment_data.xml',
         'views/product_product_view.xml',
         'views/res_partner_view.xml',
         'views/medical_physician_view.xml',
@@ -84,6 +86,8 @@
         'views/imaging/medical_imaging_menu.xml',
         'views/hospitalization/medical_patient_hospitalization_view.xml',
         'views/hospitalization/medical_hospitalization_menu.xml',
+        'views/visit/medical_visit_view.xml',
+        'views/visit/medical_visit_menu.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

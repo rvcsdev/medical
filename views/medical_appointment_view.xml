@@ -10,12 +10,12 @@
                     <field name="name" />
                     <field name="patient_id" />
                     <field name="alias" />
+                    <field name="urgency" />
                     <field name="appointment_date" />
                     <field name="physician_id" />
-                    <field name="appointment_type" />
-                    <field name="institution_id" />
-                    <field name="urgency" />
                     <field name="specialty_id" />
+                    <!--<field name="appointment_type" />-->
+                    <field name="institution_id" />
                     <field name="stage_id" />
                 </tree>
             </field>
@@ -29,14 +29,15 @@
                 <form string="Medical Appointment"  version="7.0">
                     <header>
                         <field name="stage_id" widget="statusbar" clickable="True"
-                                options="{'fold_field': 'fold'}"
-                                 />
+                                options="{'fold_field': 'fold'}"/>
                     </header>
                     <sheet>
-                        <h1>
-                            <label string="Appointment"/>
-                            <field name="name"/>
-                        </h1>
+                        <div class="oe_title" name="title">
+                            <label for="name" class="edit_only" string="Appointment"/>
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+
+                        <div class="oe_right oe_button_box" name="buttons"/>
                         <group col="4" colspan="4">
                             <field name="patient_id"/>
                             <field name="alias" />
@@ -132,12 +133,12 @@
             <field name="model">medical.appointment</field>
             <field name="type">kanban</field>
             <field name="arch" type="xml">
-                <kanban version="7.0" class="background_grey" default_group_by="stage_id">
+                <kanban class="background_grey" default_group_by="stage_id">
                     <field name="stage_id"/>
                     <field name="name"/>
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="kanban_content">
+                            <div class="kanban_content oe_kanban_global_click ">
                                 <div class="kanban_vignette semantic_html_override">
                                     <div class="kanban_details">
                                         <h3>
@@ -146,7 +147,9 @@
                                         <ul>
                                             <li t-if="record.patient_id.raw_value"><b>Patient:</b> <field name="patient_id"/></li>
                                             <li t-if="record.physician_id.raw_value"><b>Physician:</b> <field name="physician_id"/></li>
+                                            <li t-if="record.appointment_date.raw_value"><b>Date and Time:</b> <field name="appointment_date"/></li>
                                             <li t-if="record.duration.raw_value"><b>Duration:</b> <field name="duration"/></li>
+                                            <li t-if="record.urgency.raw_value"><b>Urgency:</b> <field name="urgency"/></li>
                                         </ul>
                                     </div>
                                 </div>

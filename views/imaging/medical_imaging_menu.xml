@@ -17,7 +17,7 @@
 
         <!-- Medical Imaging -->
         <menuitem id="medical_imaging_root" name="Imaging"
-            parent="medical_root" sequence="40" />
+            parent="medical_root" sequence="60" />
 
         <menuitem id="medical_imaging_request" name="Imaging Request"
             parent="medical_imaging_root" sequence="10" 

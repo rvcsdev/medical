@@ -3,7 +3,7 @@
     <data>
 
         <menuitem id="medical_hospitalization_root" name="Inpatient Administration"
-            parent="medical_root" sequence="30" />
+            parent="medical_root" sequence="40" />
 
         <menuitem id="medical_patient_hospitalization_menu" sequence="10"
             parent="medical_hospitalization_root" action="medical_patient_hospitalization_action" />
