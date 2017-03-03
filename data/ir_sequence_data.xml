@@ -37,7 +37,23 @@
         <record id="seq_medical_visit" model="ir.sequence">
             <field name="name">Medical Visit</field>
             <field name="code">medical.visit</field>
-            <field name="prefix">VI</field>
+            <field name="prefix">OUTPAC</field>
+            <field name="padding">3</field>
+            <!--<field name="company_id" eval="False"/>-->
+        </record>
+
+        <record id="seq_medical_visit_vital" model="ir.sequence">
+            <field name="name">Medical Visit Vital</field>
+            <field name="code">medical.visit.vital</field>
+            <field name="prefix">VIT</field>
+            <field name="padding">3</field>
+            <!--<field name="company_id" eval="False"/>-->
+        </record>
+
+        <record id="seq_medical_prescription_order" model="ir.sequence">
+            <field name="name">Medical Prescription</field>
+            <field name="code">medical.prescription.order</field>
+            <field name="prefix">PREO</field>
             <field name="padding">3</field>
             <!--<field name="company_id" eval="False"/>-->
         </record>

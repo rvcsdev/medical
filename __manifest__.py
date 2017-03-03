@@ -29,7 +29,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product'],
+    'depends': ['base', 'product', 'report'],
 
     # always loaded
     'data': [
@@ -42,6 +42,8 @@
         'data/medicament/medical_medicament_drug_route_data.xml',
         'data/medication/medical_medication_dosage_data.xml',
         'data/appointment/medical_appointment_data.xml',
+        'report/prescription/medical_prescription_order_report.xml',
+        'report/prescription/medical_prescription_order_report_template.xml',
         'views/product_product_view.xml',
         'views/res_partner_view.xml',
         'views/medical_physician_view.xml',

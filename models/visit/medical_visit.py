@@ -18,6 +18,10 @@ class MedicalVisit(models.Model):
     observations = fields.Text(string='Observations')
     urgency = fields.Selection([('a', 'Normal'), ('b', 'Urgent'), ('c', 'Medical Emergency'), ], string='Urgency Level')
 
+    vital_ids = fields.One2many(string='Vital Signs', comodel_name='medical.visit.vital', inverse_name='visit_id', copy=True)
+    
+    medication_prescription_ids = fields.One2many(string='Medication Prescriptions', comodel_name='medical.prescription.order', inverse_name='visit_id', copy=True)
+
     @api.model
     def create(self, values):
         """

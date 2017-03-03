@@ -53,12 +53,97 @@
                         </group>
                         <notebook>
                             <page string="Medical Vitals">
+                                <field name="vital_ids" nolabel="1">
+                                    <tree string="Vital Signs">
+                                            <field name="name" />
+                                            <field name="date_conducted" />
+                                            <field name="temperature" />
+                                            <field name="heart_rate" />
+                                            <field name="systolic_pressure" />
+                                            <field name="respiratory_rate" />
+                                            <field name="diastolic_pressure" />
+                                            <field name="oxygen_saturation" />
+                                    </tree>
+                                    <form string="Vital Signs">
+                                        <sheet>
+                                            <group>
+                                                <field name="name" />
+                                                <!--<field name="visit_id" />-->
+                                                <field name="date_conducted" />
+                                            </group>
+                                        
+                                            <group>
+                                                <field name="temperature" />
+                                                <field name="heart_rate" />
+                                                <field name="systolic_pressure" />
+                                                <field name="respiratory_rate" />
+                                                <field name="diastolic_pressure" />
+                                                <field name="oxygen_saturation" />
+                                                <field name="notes" />
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
                             </page>
                             <page string="Laboratory Prescriptions">
                             </page>
                             <page string="Imaging Prescriptions">
                             </page>
                             <page string="Medication Prescriptions">
+                                <field name="medication_prescription_ids" >
+                                    <tree>
+                                        <field name="name" />
+                                        <field name="patient_id" />
+                                        <field name="date_prescription" />
+                                        <field name="physician_id" />
+                                        <field name="partner_id" />
+                                    </tree>
+                                    <form>
+                                        <header/>
+                                        <sheet>
+                                            <div class="oe_title" name="title">
+                                                <label for="name" class="oe_edit_only"/>
+                                                <h1><field name="name" placeholder="Name"/></h1>
+                                            </div>
+                                            <div class="oe_right oe_button_box" name="buttons">
+                                            </div>
+                                            <group name="data">
+                                                <group>
+                                                    <field name="patient_id" domain="[('is_patient', '=', True)]"
+                                                        context="{'default_is_patient': True}" />
+                                                    <field name="physician_id" domain="[('is_doctor', '=', True)]"
+                                                        context="{'default_is_doctor': True}" />
+                                                    <field name="date_prescription" />
+                                                </group>
+                                                <group>
+                                                    <field name="partner_id" domain="[('is_pharmacy', '=', True)]"
+                                                        context="{'default_is_pharmacy': True}" />
+                                                    <field name="is_pregnant" />
+                                                    <field name="is_verified" />
+                                                </group>
+                                            </group>
+                                            <notebook>
+                                                <page string="Order Lines" name="order_lines">
+                                                    <field name="prescription_order_line_ids" nolabel="1"
+                                                        context="{'default_patient_id': patient_id,
+                                                                    'default_physician_id': physician_id, }">
+                                                        <tree>
+                                                            <field name="date_start_treatment" />
+                                                            <field name="date_stop_treatment" />
+                                                            <field name="pathology_id" />
+                                                            <field name="medicament_id" />
+                                                            <field name="quantity" />
+                                                            <field name="dose_unit_id" />
+                                                        </tree>
+                                                    </field>
+                                                </page>
+                                                <page string="Notes" name="notes">
+                                                    <field name="notes" nolabel="1" />
+                                                </page>
+                                            </notebook>
+                                        </sheet>
+                                    </form>
+                                </field>
                             </page>
                             <page string="Diagnosis">
                             </page>

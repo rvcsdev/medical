@@ -25,6 +25,7 @@ class MedicalPatientHospitalization(models.Model):
         ('draft', 'Draft'), 
         ('confirmed', 'Confirmed'), 
         ('hospitalized', 'Hospitalized'), 
+        ('discharged', 'Discharged'), 
         ('cancelled', 'Cancelled')
         ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 
@@ -54,6 +55,13 @@ class MedicalPatientHospitalization(models.Model):
     def action_admission(self):
         for hospitalization in self:
             hospitalization.state = 'hospitalized'
+
+        return True
+
+    @api.multi
+    def action_discharge(self):
+        for hospitalization in self:
+            hospitalization.state = 'discharged'
 
         return True
 

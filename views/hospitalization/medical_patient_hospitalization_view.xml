@@ -23,7 +23,7 @@
             <field name="name">medical.patient.hospitalization.tree</field>
             <field name="model">medical.patient.hospitalization</field>
             <field name="arch" type="xml">
-                <tree string="Medical Patient Hospitalization">
+                <tree string="Medical Patient Hospitalization" colors="grey:state=='cancelled';green:state=='draft';orange:state=='confirmed';blue:state=='discharged';red:state=='hospitalized'">
                     <field name="name" />
                     <field name="patient_id" />
                     <field name="admission_date" />
@@ -46,7 +46,10 @@
 
                         <button name="action_admission" string="Patient Admission" type="object" states="confirmed" class="btn-primary" />
 
+                        <button name="action_discharge" string="Discharge" type="object" states="hospitalized" />
+
                         <button name="action_cancel" string="Cancel" type="object" states="draft,confirmed" />
+
                         <field name="state" widget="statusbar" options="{'fold_field': 'fold'}" />
                     </header>
                     <sheet>
