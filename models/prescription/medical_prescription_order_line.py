@@ -10,7 +10,7 @@ class MedicalPrescriptionOrderLine(models.Model):
 
     prescription_order_id = fields.Many2one(
         comodel_name='medical.prescription.order',
-        string='Prescription Order', required=True, ondelete='cascade')
+        string='Prescription Order', ondelete='cascade')
     medical_medication_id = fields.Many2one(
         comodel_name='medical.patient.medication', string='Medication',
         required=True, ondelete='cascade')

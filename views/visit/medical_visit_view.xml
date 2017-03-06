@@ -13,6 +13,7 @@
                     <field name="physician_id"/>
                     <field name="institution_id"/>
                     <field name="extra_information"/>
+                    <field name="state" />
                 </search>
             </field>
         </record>
@@ -24,7 +25,24 @@
             <field name="model">medical.visit</field>
             <field name="arch" type="xml">
                 <form string="Medical Visit">
-                    <header/>
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary" states="draft" />
+
+                        <button name="action_done" string="Done" type="object" states="confirmed" class="btn-primary" />
+                        
+                        <!--<button name="action_view_invoice" string="View Invoice" type="object" states="done" attrs="{'invisible':[('is_invoiced','=',False)]}" />-->
+
+                        <button name="action_view_invoice" string="View Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','done'),('is_invoiced', '=', False)]}" />
+
+                        <button name="action_create_invoice" string="Create Invoice" type="object" states="done" />
+
+                        <button name="action_print_prescription" string="Print Prescription" type="object" states="done" />
+                        <!--<button name="action_discharge" string="Discharge" type="object" states="hospitalized" />-->
+
+                        <button name="action_cancel" string="Cancel" type="object" states="draft,confirmed" />
+
+                        <field name="state" widget="statusbar" options="{'fold_field': 'fold'}" />
+                    </header>
                     <sheet>
                         <div class="oe_title" name="title">
                             <label for="name" class="edit_only" />
@@ -39,11 +57,15 @@
                             <field name="physician_id"/>
                             <field name="institution_id"/>
                             <field name="urgency"/>
-                            <field name="actual_start" string="Actual Date and Time Start"/>
-                            <field name="actual_end" string="Actual Date and Time End" />
+                            <field name="consultations" />
+                            <field name="scheduled_start" />
+                            <field name="scheduled_end" />
+                            <field name="actual_start" />
+                            <field name="actual_end" />
                         </group>
                         <group string="Invoicing">
                             <field name="is_invoice_exempt"/>
+                            <field name="is_invoiced"/>
                         </group>
                         <group string="Patient Complaints">
                             <field name="complaints"/>
@@ -146,6 +168,28 @@
                                 </field>
                             </page>
                             <page string="Diagnosis">
+                                <field name="diagnosis_ids">
+                                    <tree string="Diagnosis">
+                                        <field name="name" />
+                                        <field name="pathology_id" />
+                                        <field name="notes" />
+                                    </tree>
+                                    <form string="Diagnosis">
+                                        <header/>
+                                        <sheet>
+                                            <div class="oe_title" name="title">
+                                                <label for="name" class="oe_edit_only"/>
+                                                <h1><field name="name" placeholder="Name"/></h1>
+                                            </div>
+                                            <div class="oe_right oe_button_box" name="buttons">
+                                            </div>
+                                            <group name="data">
+                                                <field name="pathology_id" />
+                                                <field name="notes" />
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>

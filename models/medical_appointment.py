@@ -98,7 +98,8 @@ class MedicalAppointment(models.Model):
     comments = fields.Text(string='Comments')
     appointment_type = fields.Selection([('ambulatory', 'Ambulatory'), ('outpatient', 'Outpatient'),('inpatient', 'Inpatient'), ], string='Type')
     institution_id = fields.Many2one('res.partner', string='Health Center', help='Medical Center', domain="[('is_institution', '=', True)]")
-    consultations = fields.Many2one('medical.physician.services', string='Consultation Services', help='Consultation Services', domain="[('physician_id', '=', physician_id)]")
+    # consultations = fields.Many2one('medical.physician.services', string='Consultation Services', help='Consultation Services', domain="[('physician_id', '=', physician_id)]")
+    consultations = fields.Many2one(string='Consultation Service', comodel_name='product.product', required=True, ondelete="cascade", domain="[('type', '=', 'service')]")
     urgency = fields.Selection([('a', 'Normal'), ('b', 'Urgent'), ('c', 'Medical Emergency'), ], string='Urgency Level')
     specialty_id = fields.Many2one('medical.specialty', string='Specialty', help='Medical Specialty / Sector')
     stage_id = fields.Many2one('medical.appointment.stage', 'Stage', track_visibility='onchange')
@@ -153,6 +154,11 @@ class MedicalAppointment(models.Model):
         result = super(MedicalAppointment, self).create(values)
     
         return result
+
+    @api.onchange('physician_id')
+    def _get_physician_specialty(self):
+        for r in self:
+            r.specialty_id = r.physician_id.specialty_id
 
     # @api.model
     # def create(self, vals):

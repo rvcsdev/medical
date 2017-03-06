@@ -8,6 +8,7 @@ from . import res_partner
 from . import medical_patient
 from . import medical_appointment
 from . import medical_specialty
+from . import medical_diagnosis
 
 # Medical Hospital
 from . import hospital
