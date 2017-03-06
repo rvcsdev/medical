@@ -126,6 +126,8 @@
             <field name="context">\{}</field>
             <field name="search_view_id" ref="medical_patient_hospitalization_search" />
         </record>
+
+        <!--<act_window id="medical_patient_hospitalization_transfer_history" name="Bed Transfer" res_model="medical.patient.hospitalization.transfer.history" src_model="medical.patient.hospitalization" />-->
         
     </data>
 </odoo>

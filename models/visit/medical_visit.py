@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
-
+from odoo import osv
 
 class MedicalVisit(models.Model):
     _name = 'medical.visit'
@@ -79,54 +79,23 @@ class MedicalVisit(models.Model):
         return True
 
     @api.multi
-    def action_create_invoice(self):
+    def action_create_invoice(self, cr, uid):
         if self.is_invoice_exempt == True:
             raise UserError(_("The appointment/visit is invoice exempt."))
         else:
             self.is_invoiced = True
-            # self._create_invoice()
-            visit = self.env['medical.visit'].browse(self._context.get('active_ids', []))
-            return visit.action_view_invoice()
+            for record in self:
+                invoice_id = self.pool.get('account.invoice').create(cr, uid,{
+                    'name' : record.name,
+                    'date_invoice' : record.create_date,
+                    })
+                for line in record.consultations:
+                    self.pool.get('account.invoice.line').create(cr, uid,{
+                        'invoice_id' : invoice_id,
+                        'name' : line.name,
+                        'product_id' : line.id,
+                        })
         return True
-
-    @api.multi
-    def _create_invoice(self):
-        visit = self.env['medical.visit'].browse(self._context.get('active_ids', []))
-        inv_obj = self.env['account.invoice']
-        ir_property_obj = self.env['ir.property']
-
-        invoice = inv_obj.create({
-            'name': self.name,
-            'origin': self.name,
-            'type': 'out_invoice',
-            'reference': False,
-            'account_id': self.patient_id.property_account_receivable_id.id,
-            # 'partner_id': self.patient_id.partner_invoice_id.id,
-            # 'partner_shipping_id': self.patient_id.partner_shipping_id.id,
-            # 'invoice_line_ids': [(0, 0, {
-            #     'name': name,
-            #     'origin': order.name,
-            #     'account_id': account_id,
-            #     'price_unit': amount,
-            #     'quantity': 1.0,
-            #     'discount': 0.0,
-            #     'uom_id': self.product_id.uom_id.id,
-            #     'product_id': self.product_id.id,
-            #     'sale_line_ids': [(6, 0, [so_line.id])],
-            #     'invoice_line_tax_ids': [(6, 0, tax_ids)],
-            #     'account_analytic_id': order.project_id.id or False,
-            # })],
-            # 'currency_id':self.patient_id.pricelist_id.currency_id.id,
-            # 'payment_term_id': self.patient_id.payment_term_id.id,
-            # 'fiscal_position_id': self.patient_id.fiscal_position_id.id or self.patient_id.partner_id.property_account_position_id.id,
-            'team_id': self.patient_id.team_id.id,
-            'comment': self.patient_id.note,
-        })
-        invoice.compute_taxes()
-        invoice.message_post_with_view('mail.message_origin_link',
-                    values={'self': invoice, 'origin': order},
-                    subtype_id=self.env.ref('mail.mt_note').id)
-        return invoice
 
     @api.multi
     def action_view_invoice(self):
