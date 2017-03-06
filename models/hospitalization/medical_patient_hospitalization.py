@@ -5,7 +5,7 @@ class MedicalPatientHospitalization(models.Model):
     _description = 'Medical Patient Hospitalization'
 
     name = fields.Char(string='Registration Code', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
-    patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', required=True, select=True, help='Patient Name.')
+    patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', required=True, select=True, help='Patient Name')
     hospital_bed_id = fields.Many2one(string='Hospital Bed', comodel_name='medical.hospital.bed', required=True, select=True, help='Assign bed to patient.')
     admission_date = fields.Datetime(string='Admission Date')
     expected_discharge_date = fields.Datetime(string='Expected Discharge Date')

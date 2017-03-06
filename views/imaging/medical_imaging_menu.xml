@@ -19,7 +19,7 @@
         <menuitem id="medical_imaging_root" name="Imaging"
             parent="medical_root" sequence="60" />
 
-        <menuitem id="medical_imaging_request" name="Imaging Request"
+        <menuitem id="medical_imaging_request" name="Imaging Requests"
             parent="medical_imaging_root" sequence="10" 
             action="medical_imaging_request_action"/>
 

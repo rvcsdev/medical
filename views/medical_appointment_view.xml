@@ -161,7 +161,7 @@
         </record>
 
         <record model="ir.actions.act_window" id="medical_appointment_action">
-            <field name="name">Appointment</field>
+            <field name="name">Appointments</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">medical.appointment</field>
             <field name="view_type">form</field>

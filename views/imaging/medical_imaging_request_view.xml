@@ -78,7 +78,7 @@
         
         <record id="medical_imaging_request_action" model="ir.actions.act_window">
             <field name="type">ir.actions.act_window</field>
-            <field name="name">Medical Imaging Request</field>
+            <field name="name">Medical Imaging Requests</field>
             <field name="res_model">medical.imaging.request</field>
             <field name="view_mode">tree,form</field>
             <field name="view_type">form</field>

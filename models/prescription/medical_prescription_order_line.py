@@ -2,7 +2,6 @@
 
 from odoo import fields, models
 
-
 class MedicalPrescriptionOrderLine(models.Model):
     _name = 'medical.prescription.order.line'
     _inherit = ['abstract.medical.medication']
@@ -11,7 +10,7 @@ class MedicalPrescriptionOrderLine(models.Model):
 
     prescription_order_id = fields.Many2one(
         comodel_name='medical.prescription.order',
-        string='Prescription Order')
+        string='Prescription Order', required=True, ondelete='cascade')
     medical_medication_id = fields.Many2one(
         comodel_name='medical.patient.medication', string='Medication',
         required=True, ondelete='cascade')

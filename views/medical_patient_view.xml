@@ -185,6 +185,15 @@
                                     </form>
                                 </field>
                             </page>
+                            <page string="Appointments">
+                                <field name="appointment_ids" />
+                            </page>
+                            <page string="Visits">
+                                <field name="visit_ids" />
+                            </page>
+                            <page string="Hospitalizations">
+                                <field name="hospitalization_ids" />
+                            </page>
                         </notebook> 
                      </sheet>
                     <div name="configurator" class="oe_form_sheetbg" groups="medical.group_medical_configurator">
@@ -280,7 +289,7 @@
          </record>
 
          <record model="ir.actions.act_window" id="medical_patient_action">
-             <field name="name">Patient</field>
+             <field name="name">Patients</field>
              <field name="type">ir.actions.act_window</field>
              <field name="res_model">medical.patient</field>
              <field name="view_type">form</field>

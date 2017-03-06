@@ -37,10 +37,10 @@
                         <group string="General">
                             <field name="patient_id"/>
                             <field name="physician_id"/>
-                            <field name="actual_start"/>
-                            <field name="actual_end"/>
                             <field name="institution_id"/>
                             <field name="urgency"/>
+                            <field name="actual_start" string="Actual Date and Time Start"/>
+                            <field name="actual_end" string="Actual Date and Time End" />
                         </group>
                         <group string="Invoicing">
                             <field name="is_invoice_exempt"/>

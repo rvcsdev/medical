@@ -48,6 +48,12 @@ class MedicalPatient(models.Model):
         help='Check if the patient is pregnant',
     )
 
+    appointment_ids = fields.One2many('medical.appointment', inverse_name='patient_id', string="Appointments", ondelete="cascade")
+
+    visit_ids = fields.One2many('medical.visit', inverse_name='patient_id', string='Visits', ondelete='cascade')
+
+    hospitalization_ids = fields.One2many('medical.patient.hospitalization', inverse_name='patient_id', string='Hopsitalizations', ondelete='cascade')
+
     # @api.multi
     # @api.onchange('state_id')
     # def onchange_state(self):

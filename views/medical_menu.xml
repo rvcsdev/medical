@@ -9,7 +9,7 @@
                   parent="medical_root"
                   sequence="10" />
         <menuitem id="medical_patient"
-                  name=" Patient"
+                  name=" Patients"
                   parent="medical_patient_root"
                   sequence="10"
                   action="medical_patient_action" />
@@ -22,7 +22,7 @@
                   sequence="20" />
 
         <menuitem id="medical_appointment"
-                  name=" Appointment"
+                  name=" Appointments"
                   parent="medical_appointment_root"
                   sequence="10"
                   action="medical_appointment_action" />
