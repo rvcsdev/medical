@@ -66,6 +66,7 @@
                         <group string="Invoicing">
                             <field name="is_invoice_exempt"/>
                             <field name="is_invoiced"/>
+                            <field name="invoice_ids"/>
                         </group>
                         <group string="Patient Complaints">
                             <field name="complaints"/>
