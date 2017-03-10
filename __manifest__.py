@@ -87,6 +87,7 @@
         'views/imaging/medical_imaging_request_view.xml',
         'views/imaging/medical_imaging_menu.xml',
         'views/hospitalization/medical_patient_hospitalization_view.xml',
+        'views/hospitalization/medical_patient_hospitalization_transfer_view.xml',
         'views/hospitalization/medical_hospitalization_menu.xml',
         'views/visit/medical_visit_view.xml',
         'views/visit/medical_visit_menu.xml',

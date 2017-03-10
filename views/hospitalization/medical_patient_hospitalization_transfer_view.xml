@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record id="medical_patient_hospitalization_transfer_tree" model="ir.ui.view">
+            <field name="name">medical.patient.hospitalization.transfer.tree</field>
+            <field name="model">medical.patient.hospitalization.transfer</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <field name="transfer_date" />
+                <field name="transfer_from" />
+                <field name="transfer_to" />
+                <field name="transfer_reason" />
+            </field>
+        </record>
+
+        <record id="medical_patient_hospitalization_transfer_form" model="ir.ui.view">
+            <field name="name">medical.patient.hospitalization.transfer.form</field>
+            <field name="model">medical.patient.hospitalization.transfer</field>
+            <field name="arch" type="xml">
+                <form string="Patient Hospitalization Transfer">
+                    <header/>
+                    <sheet>
+                        <group>
+                            <field name="hospitalization_id" />
+                            <field name="transfer_date" />
+                            <field name="transfer_from" />
+                            <field name="transfer_to" string="New Bed"/>
+                            <field name="transfer_reason" />
+                        </group>
+                    </sheet>
+                    <!--<footer>
+                        <button type="object" name="action_transfer" string="Transfer" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>-->
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

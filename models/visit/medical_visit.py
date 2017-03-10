@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from odoo import api, models, fields, _
 from odoo.exceptions import UserError, RedirectWarning, ValidationError
-from odoo import osv
 
 class MedicalVisit(models.Model):
     _name = 'medical.visit'
@@ -36,51 +35,9 @@ class MedicalVisit(models.Model):
 
     diagnosis_ids = fields.One2many(string='Diagnosis', comodel_name='medical.diagnosis', inverse_name='visit_id', copy=True)
 
-    invoice_ids = fields.Many2many("account.invoice", string='Invoices', compute="_get_invoiced", readonly=True, copy=False)
-    # invoice_ids = fields.Many2many("account.invoice", string='Invoices', readonly=True, copy=False)
+    # invoice_ids = fields.Many2many("account.invoice", string='Invoices', compute="_get_invoiced", readonly=True, copy=False)
+    invoice_ids = fields.Many2many("account.invoice", string='Invoices', readonly=True, copy=False)
     # invoice_lines = fields.Many2many('account.invoice.line', 'sale_order_line_invoice_rel', 'order_line_id', 'invoice_line_id', string='Invoice Lines', copy=False)
-
-
-    @api.depends('state')
-    def _get_invoiced(self):
-    #     for visit in self:
-    #         invoice_ids = visit.consultations.mapped('invoice_lines').mapped('invoice_id').filtered(lambda r: r.type in ['out_invoice', 'out_refund'])
-    #         # Search for invoices which have been 'cancelled' (filter_refund = 'modify' in
-    #         # 'account.invoice.refund')
-    #         # use like as origin may contains multiple references (e.g. 'SO01, SO02')
-    #         refunds = invoice_ids.search([('origin', 'like', order.name)])
-    #         invoice_ids |= refunds.filtered(lambda r: order.name in [origin.strip() for origin in r.origin.split(',')])
-    #         # Search for refunds as well
-    #         refund_ids = self.env['account.invoice'].browse()
-    #         if invoice_ids:
-    #             for inv in invoice_ids:
-    #                 refund_ids += refund_ids.search([('type', '=', 'out_refund'), ('origin', '=', inv.number), ('origin', '!=', False), ('journal_id', '=', inv.journal_id.id)])
-
-    #         line_invoice_status = [line.invoice_status for line in order.order_line]
-
-    #         if order.state not in ('sale', 'done'):
-    #             invoice_status = 'no'
-    #         elif any(invoice_status == 'to invoice' for invoice_status in line_invoice_status):
-    #             invoice_status = 'to invoice'
-    #         elif all(invoice_status == 'invoiced' for invoice_status in line_invoice_status):
-    #             invoice_status = 'invoiced'
-    #         elif all(invoice_status in ['invoiced', 'upselling'] for invoice_status in line_invoice_status):
-    #             invoice_status = 'upselling'
-    #         else:
-    #             invoice_status = 'no'
-
-    #         order.update({
-    #             'invoice_count': len(set(invoice_ids.ids + refund_ids.ids)),
-    #             'invoice_ids': invoice_ids.ids + refund_ids.ids,
-    #             'invoice_status': invoice_status
-    #         })
-        for visit in self:
-            invoice_ids = self.env['account.invoice'].search([('origin', 'like', visit.name)])
-            invoices = self.env['account.invoice'].browse()
-            visit.update({
-                'invoice_ids': invoices.ids,
-            })
-
     
     @api.model
     def create(self, values):
@@ -133,8 +90,7 @@ class MedicalVisit(models.Model):
                     if not record.consultations.property_account_income_id:
                         raise UserError(_("Please define income account for this product."))
                     else:
-                        invoice_id = self.env['account.invoice']
-                        invoice_id.create({
+                        invoice_id = self.env['account.invoice'].create({
                             'name' : record.name,
                             'origin' : record.name,
                             'type': 'out_invoice',
@@ -152,67 +108,51 @@ class MedicalVisit(models.Model):
                             # 'user_id': record.user_id and record.user_id.id,
                             # 'team_id': record.team_id.id
                         })
-                        self.is_invoiced = True
+                        # self.is_invoiced = True
                         # self.invoice_ids = invoice_id.id
+                        # invoice_created_id = invoice_id
+                        # raise Warning(invoice_created_id.id)
                         invoice_id.compute_taxes()
                         invoice_id.message_post_with_view('mail.message_origin_link',
                             values={'self': invoice_id, 'origin': record},
                             subtype_id=self.env.ref('mail.mt_note').id)
-                        return self.action_view_invoice()
+                        invoice_created_id = invoice_id
+                        # raise Warning(invoice_created_id.id)
+                        self.is_invoiced = True
+                        self.invoice_ids = invoice_created_id
+                        return {
+                            'type': 'ir.actions.act_window',
+                            'name': 'Invoice',
+                            'view_type': 'form',
+                            'view_mode': 'form',
+                            'res_model': 'account.invoice',
+                            'res_id': invoice_created_id.id,
+                            'view_id': self.env.ref('account.invoice_form').id,
+                            # 'domain': "[('type','in',('out_invoice', 'out_refund'))]",
+                            # 'context': "{'type':'out_invoice', 'journal_type': 'sale'}",
+                            'target': 'current',
+                        }
+                        # return self.action_view_invoice()
                 else:
                      raise UserError(_("There is no invoicable line."))
-                # invoice_id_line = self.env['account.invoice.line']
-                # if record.consultations:
-                #     if not record.consultations.property_account_income_id:
-                #         raise UserError(_("Please define income account for this product."))
-                #     else:
-                #         invoice_id_line.create({
-                #             'invoice_id' : invoice_id,
-                #             'name' : record.consultations.name,
-                #             'product_id' : record.consultations.id,
-                #             'price_unit' : record.consultations.price,
-                #             'quantity' : 1,
-                #             'account_id' : record.consultations.property_account_income_id.id,
-                #         })
-
-                #         invoice_id.update({
-                #             'id': invoice_id, 
-                #             'invoice_line_ids': invoice_id_line, 
-                #             })
-
-                #         for line in invoice_id.invoice_line_ids:
-                #             line._set_additional_fields(invoice_id)
-                        
-                #         self.is_invoiced = True
-                #         self.invoice_ids = invoice_id
-
-                #         invoice_id.compute_taxes()
-                #         invoice_id.message_post_with_view('mail.message_origin_link',
-                #             values={'self': invoice_id, 'origin': record},
-                #             subtype_id=self.env.ref('mail.mt_note').id)
-                #         return self.action_view_invoice()
-                # else:
-                #     raise UserError(_("There is no invoicable line."))
         return True
 
     @api.multi
     def action_view_invoice(self):
-        # # for visit in self:
-        # #     visit.state = 'done'
-
-        # # return True
-        # visit = self.env['medical.visit'].browse(self._context.get('active_ids', []))
-        # return visit.action_view_invoice()
-        invoices = self.mapped('invoice_ids')
-        action = self.env.ref('account.action_invoice_tree1').read()[0]
-        if len(invoices) > 1:
-            action['domain'] = [('id', 'in', invoices.ids)]
-        elif len(invoices) == 1:
-            action['views'] = [(self.env.ref('account.invoice_form').id, 'form')]
-            action['res_id'] = invoices.ids[0]
-        else:
-            action = {'type': 'ir.actions.act_window_close'}
-        return action
+        for visit in self:
+            for invoice in visit.invoice_ids:
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'Invoice',
+                    'view_type': 'form',    
+                    'view_mode': 'form',
+                    'res_model': 'account.invoice',
+                    'res_id': invoice.id,
+                    'view_id': self.env.ref('account.invoice_form').id,
+                    # 'domain': "[('type','in',('out_invoice', 'out_refund'))]",
+                    # 'context': "{'type':'out_invoice', 'journal_type': 'sale'}",
+                    'target': 'current',
+                }        
 
     @api.multi
     def action_print_prescription(self):

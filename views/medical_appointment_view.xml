@@ -6,7 +6,7 @@
             <field name="model">medical.appointment</field>
             <field name="priority" eval="8" />
             <field name="arch" type="xml">
-                <tree string="Medical Appointment" colors="grey:stage_id=='Canceled';green:stage_id=='Draft';blue:stage_id in ('Done');red:stage_id in ('Waiting','Unavailable')">
+                <tree string="Medical Appointment" colors="red:stage_id=='APSP004';green:stage_id=='APSP001';orange:stage_id=='APSP002';blue:stage_id=='APSP003'">
                     <field name="name" />
                     <field name="patient_id" />
                     <field name="alias" />

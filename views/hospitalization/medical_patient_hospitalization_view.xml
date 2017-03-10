@@ -23,7 +23,7 @@
             <field name="name">medical.patient.hospitalization.tree</field>
             <field name="model">medical.patient.hospitalization</field>
             <field name="arch" type="xml">
-                <tree string="Medical Patient Hospitalization" colors="grey:state=='cancelled';green:state=='draft';orange:state=='confirmed';blue:state=='discharged';red:state=='hospitalized'">
+                <tree string="Medical Patient Hospitalization" colors="grey:state=='cancelled';green:state=='discharged';orange:state=='confirmed';blue:state=='draft';red:state=='hospitalized'">
                     <field name="name" />
                     <field name="patient_id" />
                     <field name="admission_date" />
@@ -45,6 +45,8 @@
                         <!--<button name="action_confirm" string="Confirm" type="object" class="btn-primary" />-->
 
                         <button name="action_admission" string="Patient Admission" type="object" states="confirmed" class="btn-primary" />
+
+                        <button name="action_transfer" string="Transfer Bed" type="object" states="hospitalized" class="btn-primary" />
 
                         <button name="action_discharge" string="Discharge" type="object" states="hospitalized" />
 
@@ -86,7 +88,7 @@
             </field>
         </record>
 
-        <record id="medical_patient_hospitalization_transfer_history_tree" model="ir.ui.view">
+        <!--<record id="medical_patient_hospitalization_transfer_history_tree" model="ir.ui.view">
             <field name="name">medical.patient.hospitalization.transfer.history.tree</field>
             <field name="model">medical.patient.hospitalization.transfer.history</field>
             <field name="type">tree</field>
@@ -96,7 +98,7 @@
                 <field name="transfer_to" />
                 <field name="transfer_reason" />
             </field>
-        </record>
+        </record>-->
 
         <!--<record id="medical_patient_hospitalization_transfer_history_form" model="ir.ui.view">
             <field name="name">medical.patient.hospitalization.transfer.history.form</field>

@@ -34,7 +34,7 @@
 
                         <button name="action_view_invoice" string="View Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','done'),('is_invoiced', '=', False)]}" />
 
-                        <button name="action_create_invoice" string="Create Invoice" type="object" states="done" />
+                        <button name="action_create_invoice" string="Create Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','done'),('is_invoiced', '=', True)]}" />
 
                         <button name="action_print_prescription" string="Print Prescription" type="object" states="done" />
                         <!--<button name="action_discharge" string="Discharge" type="object" states="hospitalized" />-->
@@ -66,7 +66,7 @@
                         <group string="Invoicing">
                             <field name="is_invoice_exempt"/>
                             <field name="is_invoiced"/>
-                            <field name="invoice_ids"/>
+                            <!--<field name="invoice_ids"/>-->
                         </group>
                         <group string="Patient Complaints">
                             <field name="complaints"/>
@@ -203,13 +203,14 @@
             <field name="name">medical.visit.tree</field>
             <field name="model">medical.visit</field>
             <field name="arch" type="xml">
-                <tree string="Medical Visit">
+                <tree string="Medical Visit" colors="red:state=='cancelled';green:state=='done';orange:state=='confirmed';blue:state=='draft'">
                     <field name="name"/>
                     <field name="appointment_id"/>
                     <field name="patient_id"/>
                     <field name="physician_id"/>
                     <field name="institution_id"/>
                     <field name="extra_information" />
+                    <field name="state" />
                 </tree>
             </field>
         </record>

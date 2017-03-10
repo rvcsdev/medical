@@ -20,7 +20,7 @@ class MedicalPatientHospitalization(models.Model):
         ], string='Admission Type')
     admission_reason = fields.Char(string='Admission Reason')
     extra_info = fields.Text(string='Extra Info')
-    transfer_history_ids = fields.One2many(string='Transfer History', comodel_name='medical.patient.hospitalization.transfer.history', inverse_name='hospitalization_id', readonly=True)
+    transfer_history_ids = fields.One2many(string='Transfer History', comodel_name='medical.patient.hospitalization.transfer', inverse_name='hospitalization_id', readonly=True)
     state = fields.Selection([
         ('draft', 'Draft'), 
         ('confirmed', 'Confirmed'), 
@@ -59,6 +59,26 @@ class MedicalPatientHospitalization(models.Model):
         return True
 
     @api.multi
+    def action_transfer(self):
+        for hospitalization in self:
+            vals = {}
+            vals['hospitalization_id'] = hospitalization.id
+            vals['current_bed'] = hospitalization.hospital_bed_id.id
+            return {
+                'type': 'ir.actions.act_window',
+                'name': 'Transfer Bed',
+                'view_type': 'form',    
+                'view_mode': 'form',
+                'res_model': 'medical.patient.hospitalization.transfer',
+                # 'res_id': invoice.id,
+                'view_id': self.env.ref('medical.medical_patient_hospitalization_transfer_form').id,
+                # 'domain': "[('type','in',('out_invoice', 'out_refund'))]",
+                'context': vals,
+                # 'data': vals,
+                'target': 'new',
+            }
+
+    @api.multi
     def action_discharge(self):
         for hospitalization in self:
             hospitalization.state = 'discharged'
@@ -68,13 +88,3 @@ class MedicalPatientHospitalization(models.Model):
     @api.multi
     def action_cancel(self):
         self.write({'state': 'cancelled'})
-
-    class MedicalPatientHospitalizationTransferHistory(models.Model):
-        _name = 'medical.patient.hospitalization.transfer.history'
-        _description = 'Medical Patient Hospitalization Transfer History'
-
-        hospitalization_id = fields.Many2one(comodel_name='medical.patient.hospitalization', string='Hospitalization', ondelete='cascade')
-        transfer_history_date = fields.Datetime(string='Date', default=fields.Datetime.now)
-        transfer_from = fields.Char(string='From')
-        transfer_to = fields.Char(string='To')
-        transfer_reason = fields.Text(string='Reason')
