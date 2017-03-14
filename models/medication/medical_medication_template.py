@@ -8,20 +8,20 @@ class MedicalMedicationTemplate(models.Model):
     _description = 'Medical Medication Template'
     _rec_name = 'pathology_id'
 
-    @api.multi
-    def name_get(self):
-        res = []
-        for rec in self:
-            if self.medication_dosage_id:
-                name = self.medication_dosage_id.name
-            elif self.frequency and self.frequency_unit:
-                name = '%s / %s' % (self.frequency, self.frequency_unit)
-            elif self.pathology_id:
-                name = self.pathology_id.name
-            else:
-                name = self.medicament_id.name
-            res.append((rec.id, name))
-        return res
+    # @api.multi
+    # def name_get(self):
+    #     res = []
+    #     for rec in self:
+    #         if self.medication_dosage_id:
+    #             name = self.medication_dosage_id.name
+    #         elif self.frequency and self.frequency_unit:
+    #             name = '%s / %s' % (self.frequency, self.frequency_unit)
+    #         elif self.pathology_id:
+    #             name = self.pathology_id.name
+    #         else:
+    #             name = self.medicament_id.name
+    #         res.append((rec.id, name))
+    #     return res
 
     medicament_id = fields.Many2one(
         comodel_name='medical.medicament', string='Medicament', required=True)

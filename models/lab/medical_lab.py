@@ -57,6 +57,7 @@ class MedicalLab(models.Model):
     )
 
     # visit_id = fields.Many2one(comodel_name='medical.visit', string='Visit', ondelete='cascade', index=True, copy=False)
+    hospitalization_id = fields.Many2one(comodel_name='medical.hospitalization', string='Hospitalization', ondelete='cascade', index=True, copy=False)
 
     _sql_constraints = [
         ('name_uniq', 'UNIQUE(name)', 'The test ID code must be unique'),

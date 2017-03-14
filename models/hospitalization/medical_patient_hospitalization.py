@@ -43,7 +43,16 @@ class MedicalPatientHospitalization(models.Model):
     therapeutic_diets = fields.One2many(string='Therapeutic Diets', comodel_name='medical.patient.hospitalization.nutrition.diet', inverse_name='hospitalization_id')
 
     is_icu = fields.Boolean(string='ICU')
-    
+
+    medication_ids = fields.Many2many(comodel_name='medical.medication.template', string='Medications')
+
+    is_invoice_exempt = fields.Boolean()
+    is_invoiced = fields.Boolean(string='Invoiced?', default=False, readonly=True)
+    invoice_ids = fields.Many2many("account.invoice", string='Invoices', readonly=True, copy=False)
+
+    laboratory_ids = fields.One2many(string='Laboratory Requests', comodel_name='medical.lab', inverse_name='hospitalization_id')
+    imaging_ids = fields.One2many(string='Imaging Requests', comodel_name='medical.imaging.request', inverse_name='hospitalization_id')
+
     @api.model
     def create(self, values):
         """
@@ -103,3 +112,77 @@ class MedicalPatientHospitalization(models.Model):
     @api.multi
     def action_cancel(self):
         self.write({'state': 'cancelled'})
+
+    @api.multi
+    def action_create_invoice(self):
+        if self.is_invoice_exempt == True:
+            raise UserError(_("This record is invoice exempt."))
+        else:
+            for record in self:
+                if record.medication_ids:
+                    if not record.medication_ids.medicament_id.property_account_income_id:
+                        raise UserError(_("Please define income account for this product."))
+                    else:
+                        invoice_id = self.env['account.invoice'].create({
+                            'name' : record.name,
+                            'origin' : record.name,
+                            'type': 'out_invoice',
+                            'date_invoice' : fields.Datetime.now(),
+                            'partner_id' : record.patient_id.partner_id.id,
+                            'invoice_line_ids': [(0, 0, {
+                                'name' : record.medication_ids.medicament_id.name,
+                                'product_id' : record.medication_ids.medicament_id.id,
+                                'price_unit' : record.medication_ids.medicament_id.list_price,
+                                'quantity' : 1,
+                                'account_id' : record.medication_ids.medicament_id.property_account_income_id.id,
+                                'invoice_line_tax_ids' : [(6, 0, record.medication_ids.medicament_id.taxes_id.ids)],
+                            })],  
+                            # 'company_id': record.company_id.id,
+                            # 'user_id': record.user_id and record.user_id.id,
+                            # 'team_id': record.team_id.id
+                        })
+                        # self.is_invoiced = True
+                        # self.invoice_ids = invoice_id.id
+                        # invoice_created_id = invoice_id
+                        # raise Warning(invoice_created_id.id)
+                        invoice_id.compute_taxes()
+                        invoice_id.message_post_with_view('mail.message_origin_link',
+                            values={'self': invoice_id, 'origin': record},
+                            subtype_id=self.env.ref('mail.mt_note').id)
+                        invoice_created_id = invoice_id
+                        # raise Warning(invoice_created_id.id)
+                        self.is_invoiced = True
+                        self.invoice_ids = invoice_created_id
+                        return {
+                            'type': 'ir.actions.act_window',
+                            'name': 'Invoice',
+                            'view_type': 'form',
+                            'view_mode': 'form',
+                            'res_model': 'account.invoice',
+                            'res_id': invoice_created_id.id,
+                            'view_id': self.env.ref('account.invoice_form').id,
+                            # 'domain': "[('type','in',('out_invoice', 'out_refund'))]",
+                            # 'context': "{'type':'out_invoice', 'journal_type': 'sale'}",
+                            'target': 'current',
+                        }
+                        # return self.action_view_invoice()
+                else:
+                     raise UserError(_("There is no invoicable line."))
+        return True
+
+    @api.multi
+    def action_view_invoice(self):
+        for record in self:
+            for invoice in record.invoice_ids:
+                return {
+                    'type': 'ir.actions.act_window',
+                    'name': 'Invoice',
+                    'view_type': 'form',    
+                    'view_mode': 'form',
+                    'res_model': 'account.invoice',
+                    'res_id': invoice.id,
+                    'view_id': self.env.ref('account.invoice_form').id,
+                    # 'domain': "[('type','in',('out_invoice', 'out_refund'))]",
+                    # 'context': "{'type':'out_invoice', 'journal_type': 'sale'}",
+                    'target': 'current',
+                }

@@ -46,9 +46,13 @@
 
                         <button name="action_admission" string="Patient Admission" type="object" states="confirmed" class="btn-primary" />
 
-                        <button name="action_transfer" string="Transfer Bed" type="object" states="hospitalized" class="btn-primary" />
+                        <button name="action_transfer" string="Transfer Bed" type="object" attrs="{'invisible': ['|','|',('state','!=','hospitalized'),('is_invoiced', '=', True)]}" class="btn-primary" />
 
-                        <button name="action_discharge" string="Discharge" type="object" states="hospitalized" />
+                        <button name="action_view_invoice" string="View Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','hospitalized'),('is_invoiced', '=', False)]}" />
+
+                        <button name="action_create_invoice" string="Create Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','hospitalized'),('is_invoiced', '=', True)]}" />
+
+                        <button name="action_discharge" string="Discharge" type="object" attrs="{'invisible': ['|','|',('state','!=','hospitalized'),('is_invoiced', '=', False)]}" />
 
                         <button name="action_cancel" string="Cancel" type="object" states="draft,confirmed" />
 
@@ -83,6 +87,11 @@
                         <group>
                             <field name="transfer_history_ids" />
                         </group>
+                        <group string="Invoicing">
+                            <field name="is_invoice_exempt"/>
+                            <field name="is_invoiced"/>
+                            <!--<field name="invoice_ids"/>-->
+                        </group>
                         <notebook>
                             <page string="Nutrition">
                                 <group>
@@ -101,6 +110,19 @@
                                 </group>
                             </page>
                             <page string="Medication">
+                                <group>
+                                    <field name="medication_ids"/>
+                                </group>
+                            </page>
+                            <page string="Laboratory">
+                                <group>
+                                    <field name="laboratory_ids" />
+                                </group>
+                            </page>
+                            <page string="Imaging">
+                                <group>
+                                    <field name="imaging_ids" />
+                                </group>
                             </page>
                             <page string="ICU">
                                 <group>
