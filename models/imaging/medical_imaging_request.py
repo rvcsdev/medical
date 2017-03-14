@@ -19,6 +19,8 @@ class MedicalImagingRequest(models.Model):
         ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
     notes = fields.Text(string='Notes')
 
+    # visit_id = fields.Many2one(comodel_name='medical.visit', string='Visit', ondelete='cascade', index=True, copy=False)
+
     @api.model
     def create(self, values):
         """

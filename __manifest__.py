@@ -29,7 +29,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'account', 'account_accountant', 'report'],
+    'depends': ['base', 'product', 'account', 'account_accountant', 'point_of_sale', 'report'],
 
     # always loaded
     'data': [

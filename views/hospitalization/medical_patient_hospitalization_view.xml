@@ -83,6 +83,31 @@
                         <group>
                             <field name="transfer_history_ids" />
                         </group>
+                        <notebook>
+                            <page string="Nutrition">
+                                <group>
+                                    <group>
+                                        <field name="belief" />
+                                    </group>
+                                    <group>
+                                        <field name="vegetarian" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="therapeutic_diets" />
+                                </group>
+                                <group>
+                                    <field name="nutrition_notes" />
+                                </group>
+                            </page>
+                            <page string="Medication">
+                            </page>
+                            <page string="ICU">
+                                <group>
+                                    <field name="is_icu" />
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

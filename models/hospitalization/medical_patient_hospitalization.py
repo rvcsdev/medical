@@ -29,6 +29,21 @@ class MedicalPatientHospitalization(models.Model):
         ('cancelled', 'Cancelled')
         ], string='Status', readonly=True, copy=False, index=True, track_visibility='onchange', default='draft')
 
+    belief = fields.Many2one(comodel_name='medical.patient.hospitalization.belief', select=True)
+    vegetarian = fields.Selection([
+        ('none', 'None'), 
+        ('vegetarian', 'Vegetarian'), 
+        ('lacto', 'Lacto Vegetarian'), 
+        ('lactoovo', 'Lacto-Ovo Vegetarian'), 
+        ('pescetarian', 'Pescetarian'),
+        ('vegan', 'Vegan'),
+        ], string='Vegetarian')
+
+    nutrition_notes = fields.Text(string='Nutrition Notes/Direction')
+    therapeutic_diets = fields.One2many(string='Therapeutic Diets', comodel_name='medical.patient.hospitalization.nutrition.diet', inverse_name='hospitalization_id')
+
+    is_icu = fields.Boolean(string='ICU')
+    
     @api.model
     def create(self, values):
         """

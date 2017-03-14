@@ -31,6 +31,10 @@ class MedicalVisit(models.Model):
 
     vital_ids = fields.One2many(string='Vital Signs', comodel_name='medical.visit.vital', inverse_name='visit_id', copy=True)
     
+    # laboratory_ids = fields.One2many(string='Laboratory', comodel_name='medical.lab', inverse_name='visit_id', copy=True)
+
+    # imaging_ids = fields.One2many(string='Imaging', comodel_name='medical.imaging', inverse_name='visit_id', copy=True)
+
     medication_prescription_ids = fields.One2many(string='Medication Prescriptions', comodel_name='medical.prescription.order', inverse_name='visit_id', copy=True)
 
     diagnosis_ids = fields.One2many(string='Diagnosis', comodel_name='medical.diagnosis', inverse_name='visit_id', copy=True)

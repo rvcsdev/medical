@@ -108,9 +108,15 @@
                                     </form>
                                 </field>
                             </page>
-                            <page string="Laboratory Prescriptions">
+                            <page string="Laboratory">
+                                <!--<group>
+                                    <field name="laboratory_ids" />
+                                </group>-->
                             </page>
-                            <page string="Imaging Prescriptions">
+                            <page string="Imaging">
+                                <!--<group>
+                                    <field name="imaging_ids" />
+                                </group>-->
                             </page>
                             <page string="Medication Prescriptions">
                                 <field name="medication_prescription_ids" >

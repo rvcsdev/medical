@@ -13,7 +13,7 @@ class MedicalLabTestResult(models.Model):
     criterion_id = fields.Many2one(
         string='Criterion',
         comodel_name='medical.test.criteria',
-        required=True,
+        # required=True,
         ondelete='restrict',
         domain="[('test_type_ids', '=', lab_id.test_type_id)]",
     )
