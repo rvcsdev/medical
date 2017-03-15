@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="medical_lab_test_report"
+            string="Lab Tests"
+            model="medical.patient" 
+            report_type="qweb-pdf"
+            file="medical.report_lab_test" 
+            name="medical.report_lab_test" 
+        />
+    </data>
+</odoo>

@@ -8,30 +8,30 @@
               sequence="50"
               />
     
-    <menuitem id="medical_lab_patient_menu_root"
-              name="Patient Labs"
+    <menuitem id="medical_lab_request_menu_root"
+              name="Lab Requests"
               parent="medical_lab_root_menu"
               sequence="10"
               />
     
-    <menuitem id="medical_lab_patient_menu_all"
-              name="All"
-              parent="medical_lab_patient_menu_root"
-              action="medical_lab_patient_action"
+    <menuitem id="medical_lab_request_menu_all"
+              name="All Requests"
+              parent="medical_lab_request_menu_root"
+              action="medical_lab_request_action"
               sequence="10"
               />
     
-    <menuitem id="medical_lab_patient_menu_today"
-              name="Today's Drafts"
-              parent="medical_lab_patient_menu_root"
-              action="medical_lab_patient_action_draft_today"
+    <menuitem id="medical_lab_request_menu_today"
+              name="Today's Draft Requests"
+              parent="medical_lab_request_menu_root"
+              action="medical_lab_request_action_draft_today"
               sequence="20"
               />
     
     <menuitem id="medical_lab_patent_menu_draft"
-              name="All Drafts"
-              parent="medical_lab_patient_menu_root"
-              action="medical_lab_patient_action_draft"
+              name="All Draft Requests"
+              parent="medical_lab_request_menu_root"
+              action="medical_lab_request_action_draft"
               sequence="30"
               />
     

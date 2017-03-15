@@ -12,18 +12,13 @@ class MedicalPatient(models.Model):
     _inherits = {'res.partner': 'partner_id', }
 
     age = fields.Char(string='Age', compute='_compute_age')
-    identification_code = fields.Char(
-        string='Internal Identification',
-        help='Patient Identifier provided by the Health Center.'
-        '(different from the Social Security Number)')
+    identification_code = fields.Char(string='Internal Identification', help='Patient Identifier provided by the Health Center. (different from the Social Security Number)')
     general_info = fields.Text(string='General Information')
     dob = fields.Date(string='Date of Birth')
     dod = fields.Datetime(string='Deceased Date')
     active = fields.Boolean(default=True)
     deceased = fields.Boolean(compute='_compute_deceased', store=True, help='Automatically true if deceased date is set')
-    partner_id = fields.Many2one(
-        comodel_name='res.partner', required=True, ondelete='cascade',
-        index=True)
+    partner_id = fields.Many2one(comodel_name='res.partner', required=True, ondelete='cascade', index=True)
     gender = fields.Selection(
         selection=[
             ('m', 'Male'),
@@ -54,6 +49,7 @@ class MedicalPatient(models.Model):
 
     hospitalization_ids = fields.One2many('medical.patient.hospitalization', inverse_name='patient_id', string='Hopsitalizations', ondelete='cascade')
 
+    laboratory_ids = fields.One2many('medical.lab', inverse_name='patient_id', string='Laboratory Tests', ondelete='cascade')
     # @api.multi
     # @api.onchange('state_id')
     # def onchange_state(self):

@@ -8,6 +8,6 @@ class MedicalPatient(models.Model):
 
     lab_test_ids = fields.One2many(
         string='Lab Tests',
-        comodel_name='medical.lab.patient',
+        comodel_name='medical.lab',
         inverse_name='patient_id',
     )

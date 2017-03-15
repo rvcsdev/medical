@@ -7,17 +7,26 @@
             <field name="model">medical.lab</field>
             <field name="arch" type="xml">
                 <form string="Laboratory Test">
-                    <header />
+                    <header>
+                        <button name="action_done" string="Done" type="object" states="draft" class="btn-primary" />
+                        <button name="action_cancel" string="Cancel" type="object" states="draft" />
+                        <field name="state" widget="statusbar" options="{'fold_field': 'fold'}" />
+                    </header>
                     <sheet>
+                        <div class="oe_title" name="title">
+                            <label for="name" class="edit_only" />
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+                        <div class="oe_right oe_button_box" name="buttons"/>
                         <group name="meta">
                             <group name="test">
-                                <field name="name" />
                                 <field name="test_type_id" />
                                 <field name="date_perform" />
                                 <field name="date_request" />
                                 <field name="date_receive" />
                             </group>
                             <group name="entity">
+                                <field name="patient_id" />
                                 <field name="request_physician_id" />
                                 <field name="physician_id" />
                             </group>
@@ -70,9 +79,12 @@
         <field name="arch" type="xml">
             <tree string='Labs'>
                 <field name="name" />
+                <field name="patient_id" />
+                <field name="physician_id" />
                 <field name="test_type_id" />
                 <field name="date_perform" />
                 <field name="date_receive" />
+                <field name="state" />
             </tree>
         </field>
     </record>
@@ -119,6 +131,33 @@
         <field name="res_model">medical.lab</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="medical_lab_request_action" model="ir.actions.act_window">
+        <field name="name">Lab Requests</field>
+        <field name="res_model">medical.lab</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="medical_lab_request_action_draft" model="ir.actions.act_window">
+        <field name="name">Draft Lab Requests</field>
+        <field name="res_model">medical.lab</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','draft')]</field>
+    </record>
+
+    <record id="medical_lab_request_action_draft_today" model="ir.actions.act_window">
+        <field name="name">Today's Draft Lab Requests</field>
+        <field name="res_model">medical.lab</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','draft'),
+                               ('date_receive', '>=', time.strftime('%Y-%m-%d 00:00:01')),
+                               ('date_receive','>=', time.strftime('%Y-%m-%d 23:59:59'),
+                              )]
+        </field>
     </record>
 
 </odoo>

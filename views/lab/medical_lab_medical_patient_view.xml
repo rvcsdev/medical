@@ -5,7 +5,7 @@
     <act_window domain="[('patient_id', '=', active_id)]"
                 id="medical_patient_lab_action_history"
                 name="Lab Reports"
-                res_model="medical.lab.patient"
+                res_model="medical.lab"
                 src_model="medical.patient"
                 />
     
