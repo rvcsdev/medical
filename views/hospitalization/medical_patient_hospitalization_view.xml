@@ -127,6 +127,7 @@
                             <page string="ICU">
                                 <group>
                                     <field name="is_icu" />
+                                    <field name="icu_ids"/>
                                 </group>
                             </page>
                         </notebook>

@@ -6,3 +6,5 @@ from . import medical_patient_hospitalization_transfer
 from . import medical_patient_hospitalization_diet
 from . import medical_patient_hospitalization_nutrition_diet
 from . import medical_patient_hospitalization_belief
+from . import medical_patient_hospitalization_icu
+from . import medical_patient_hospitalization_icu_ventilation

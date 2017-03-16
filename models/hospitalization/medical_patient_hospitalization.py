@@ -52,7 +52,8 @@ class MedicalPatientHospitalization(models.Model):
 
     laboratory_ids = fields.One2many(string='Laboratory Requests', comodel_name='medical.lab', inverse_name='hospitalization_id')
     imaging_ids = fields.One2many(string='Imaging Requests', comodel_name='medical.imaging.request', inverse_name='hospitalization_id')
-
+    icu_ids = fields.One2many(string='ICU Admission', comodel_name='medical.patient.hospitalization.icu', inverse_name='hospitalization_id')
+    
     @api.model
     def create(self, values):
         """
