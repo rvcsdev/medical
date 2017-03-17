@@ -2,13 +2,25 @@
 <odoo>
     <data>
 
-        <!-- Medical Visit -->
-        <menuitem id="medical_root_surgery" name="Medical Procedures"
+        <!-- Medical Procedure -->
+        <menuitem id="medical_root_procedure" name="Medical Procedures"
             parent="medical_root_sub" sequence="60" />
 
         <menuitem id="medical_procedure_menu"
-            parent="medical_root_surgery" sequence="10"
+            parent="medical_root_procedure" sequence="10"
             action="medical_procedure_action" />
+
+        <!-- Medical Surgery -->
+        <menuitem id="medical_root_surgery" name="Surgery"
+            parent="medical_root" sequence="80" />
+
+        <menuitem id="medical_surgery_menu"
+            parent="medical_root_surgery" sequence="10"
+            action="medical_surgery_action" />
+
+        <!-- Operating Areas -->
+        <menuitem id="medical_root_operating_areas" name="Operating Areas"
+            parent="medical_root_sub" sequence="70" />
 
     </data>
 </odoo>

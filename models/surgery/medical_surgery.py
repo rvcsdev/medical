@@ -1,11 +1,12 @@
-from odoo import models, fields, _ 
+from odoo import api, models, fields, _ 
 
 class MedicalSurgery(models.Model):
     _name = 'medical.surgery'
     _description = 'Medical Surgery'
 
+    name = fields.Char(string='Code', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
     patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', required=True, select=True, help='Patient Name')
-    code = fields.Char()
+    # code = fields.Char()
     description = fields.Char()
     base_condition = fields.Many2one(string='Admission Reason', comodel_name='medical.pathology', select=True)
     surgery_classification = fields.Selection([
@@ -15,7 +16,7 @@ class MedicalSurgery(models.Model):
         ('emergency', 'Emergency'),
     ])
     surgery_date_start = fields.Datetime(string='Date of Surgery')
-    surgeon = fields.Many2one(string='Surgen', comodel_name='medical.physician', select=True, help='Select surgeon.')
+    surgeon = fields.Many2one(string='Surgeon', comodel_name='medical.physician', select=True, help='Select surgeon.')
     anesthetist = fields.Many2one(string='Anesthetist', comodel_name='medical.physician', select=True, help='Select anesthetist.')
     operating_room = fields.Char()
     surgery_date_end = fields.Datetime(string='End of Surgery')
@@ -49,6 +50,21 @@ class MedicalSurgery(models.Model):
 
     details = fields.Text(string='Details/Incidents')
     anesthesia_report = fields.Text(string='Anesthesia Report')
+
+    @api.model
+    def create(self, values):
+        """
+            Create a new record for a model ModelName
+            @param values: provides a data for new record
+    
+            @return: returns a id of new record
+        """
+        if values.get('name', 'New') == 'New':
+            values['name'] = self.env['ir.sequence'].next_by_code('medical.procedure') or 'New'
+    
+        result = super(MedicalProcedure, self).create(values)
+    
+        return result
     
 
 

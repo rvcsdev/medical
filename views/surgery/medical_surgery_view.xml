@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        
+        <record id="medical_surgery_search" model="ir.ui.view">
+            <field name="name">medical.surgery.search</field>
+            <field name="model">medical.surgery</field>
+            <field name="arch" type="xml">
+                <search string="Medical Surgery">
+                    <field name="name" />
+                    <field name="patient_id" />
+                    <field name="base_condition" />
+                    <field name="surgery_classification" />
+                    <field name="surgery_date_start" />
+                    <field name="surgeon" />
+                </search>
+            </field>
+        </record>
+        
+        <record id="medical_surgery_tree" model="ir.ui.view">
+            <field name="name">medical.surgery.tree</field>
+            <field name="model">medical.surgery</field>
+            <field name="arch" type="xml">
+                <tree string="Medical Surgery">
+                    <field name="name" />
+                    <field name="patient_id" />
+                    <field name="base_condition" />
+                    <field name="surgery_classification" />
+                    <field name="surgery_date_start" />
+                    <field name="surgeon" />
+                    <field name="anesthetist" />
+                    <field name="operating_room" />
+                    <field name="duration" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="medical_surgery_form" model="ir.ui.view">
+            <field name="name">medical.surgery.form</field>
+            <field name="model">medical.surgery</field>
+            <field name="arch" type="xml">
+                <form string="Medical Surgery">
+                    <header/>
+                    <sheet>
+                        <div class="oe_title" name="title">
+                            <label for="name" class="edit_only"/>
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+
+                        <div class="oe_right oe_button_box" name="buttons"/>
+
+                        <group name="data">
+                            <group>
+                                <field name="patient_id" />
+                                <field name="base_condition" />
+                                <field name="description"/>
+                                <field name="surgery_classification"/>
+                            </group>
+                            <group>
+                                <field name="surgeon" />
+                                <field name="anesthetist" />
+                                <field name="operating_room"/>
+                                <field name="surgery_date_start"/>
+                                <field name="surgery_date_end"/>
+                                <field name="duration"/>
+                                <field name="signed_by"/>
+                            </group>
+                        </group>
+                        <group string="Surgical Safety Checklist">
+                            <group>
+                                <field name="massive_bleeeding" />
+                                <field name="site_marking" />
+                                <field name="sterility_confirmed" />
+                            </group>
+                            <group>
+                                <field name="pulse_oximeter" />
+                                <field name="antibiotic_prophylaxis" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="mallampati_score" />
+                            <field name="rcri" />
+                            <field name="asa_ps" />
+                        </group>
+                        <group string="Procedures">
+                            <field name="procedure_ids" />
+                        </group>
+                        <group string="Details/Incidents">
+                            <field name="details" />
+                        </group>
+                        <group string="Anesthesia Report">
+                            <field name="anesthesia_report" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="medical_surgery_action" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Medical Surgery</field>
+            <field name="res_model">medical.surgery</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">\{}</field>
+            <field name="search_view_id" ref="medical_surgery_search" />
+        </record>
+
+    </data>
+</odoo>
