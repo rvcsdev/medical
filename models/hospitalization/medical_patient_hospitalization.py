@@ -10,7 +10,7 @@ class MedicalPatientHospitalization(models.Model):
     admission_date = fields.Datetime(string='Admission Date')
     expected_discharge_date = fields.Datetime(string='Expected Discharge Date')
     attending_physician = fields.Many2one(string='Attending Physician', comodel_name='medical.physician', select=True, help='Select attending physician.')
-    operating_physician = fields.Many2one(string='Operating Physician', comodel_name='medical.physician', selcte=True, help='Select operating physician.')
+    operating_physician = fields.Many2one(string='Operating Physician', comodel_name='medical.physician', select=True, help='Select operating physician.')
     admission_type = fields.Selection([
         ('routine', 'Routine'),
         ('maternity', 'Maternity'),
@@ -18,7 +18,8 @@ class MedicalPatientHospitalization(models.Model):
         ('urgent', 'Urgent'),
         ('emergency', 'Emergency'),
         ], string='Admission Type')
-    admission_reason = fields.Char(string='Admission Reason')
+    # admission_reason = fields.Char(string='Admission Reason')
+    admission_reason = fields.Many2one(string='Admission Reason', comodel_name='medical.pathology', select=True)
     extra_info = fields.Text(string='Extra Info')
     transfer_history_ids = fields.One2many(string='Transfer History', comodel_name='medical.patient.hospitalization.transfer', inverse_name='hospitalization_id', readonly=True)
     state = fields.Selection([
@@ -54,6 +55,10 @@ class MedicalPatientHospitalization(models.Model):
     imaging_ids = fields.One2many(string='Imaging Requests', comodel_name='medical.imaging.request', inverse_name='hospitalization_id')
     icu_ids = fields.One2many(string='ICU Admission', comodel_name='medical.patient.hospitalization.icu', inverse_name='hospitalization_id')
     
+    #Care Plan
+    nursing_plan = fields.Text(string='Nursing Plan')
+    discharge_plan = fields.Text(string='Discharge Plan')
+
     @api.model
     def create(self, values):
         """

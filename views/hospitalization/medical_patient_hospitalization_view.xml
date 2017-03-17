@@ -84,9 +84,6 @@
                         <group>
                             <field name="extra_info" />
                         </group>
-                        <group>
-                            <field name="transfer_history_ids" />
-                        </group>
                         <group string="Invoicing">
                             <field name="is_invoice_exempt"/>
                             <field name="is_invoiced"/>
@@ -124,10 +121,21 @@
                                     <field name="imaging_ids" />
                                 </group>
                             </page>
+                            <page string="Care Plan">
+                                <group>
+                                    <field name="nursing_plan" />
+                                    <field name="discharge_plan" />
+                                </group>
+                            </page>
                             <page string="ICU">
                                 <group>
                                     <field name="is_icu" />
-                                    <field name="icu_ids"/>
+                                    <field name="icu_ids" attrs="{'invisible': [('is_icu','=',False)]}"/>
+                                </group>
+                            </page>
+                            <page string="Transfer History">
+                                <group>
+                                    <field name="transfer_history_ids" />
                                 </group>
                             </page>
                         </notebook>

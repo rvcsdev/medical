@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Medical Visit -->
+        <menuitem id="medical_root_surgery" name="Medical Procedures"
+            parent="medical_root_sub" sequence="60" />
+
+        <menuitem id="medical_procedure_menu"
+            parent="medical_root_surgery" sequence="10"
+            action="medical_procedure_action" />
+
+    </data>
+</odoo>

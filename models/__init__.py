@@ -37,3 +37,6 @@ from . import hospitalization
 # Medical Visits
 from . import visit
 
+# Medical Surgery
+from . import surgery
+

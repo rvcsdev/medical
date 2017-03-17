@@ -59,13 +59,13 @@
                         </div>
 
                         <group name="data">
-                            <group name="main">
+                            <!--<group name="main">-->
                                 <field name="code" />
                                 <field name="protein" />
                                 <field name="chromosome" />
                                 <field name="gene" />
                                 <field name="category_id" />
-                            </group>
+                            <!--</group>-->
                         </group>
 
                         <notebook>

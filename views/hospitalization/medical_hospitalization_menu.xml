@@ -8,5 +8,11 @@
         <menuitem id="medical_patient_hospitalization_menu" sequence="10"
             parent="medical_hospitalization_root" action="medical_patient_hospitalization_action" />
 
+        <menuitem id="medical_patient_hospitalization_icu_root" sequence="20" 
+            parent="medical_hospitalization_root" name="Intensive Care" />
+        
+        <menuitem id="medical_patient_hospitalization_icu_menu" sequence="10"
+            parent="medical_patient_hospitalization_icu_root" action="medical_patient_hospitalization_icu_action" />
+
     </data>
 </odoo>
