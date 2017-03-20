@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        
+        <record id="medical_operating_area_search" model="ir.ui.view">
+            <field name="name">medical.operating.area.search</field>
+            <field name="model">medical.operating.area</field>
+            <field name="arch" type="xml">
+                <search string="Medical Operating Area">
+                    <field name="name" />
+                </search>
+            </field>
+        </record>
+        
+        <record id="medical_operating_area_tree" model="ir.ui.view">
+            <field name="name">medical.operating.area.tree</field>
+            <field name="model">medical.operating.area</field>
+            <field name="arch" type="xml">
+                <tree string="Medical Operating Area">
+                    <field name="name" />
+                    <field name="extra_information" />
+                </tree>
+            </field>
+        </record>
+        
+        <record id="medical_operating_area_form" model="ir.ui.view">
+            <field name="name">medical.operating.area.form</field>
+            <field name="model">medical.operating.area</field>
+            <field name="arch" type="xml">
+                <form string="Medical Operating Area">
+                    <header/>
+                    <sheet>
+                        <div class="oe_title" name="title">
+                            <label for="name" class="edit_only"/>
+                            <h1><field name="name" readonly="1"/></h1>
+                        </div>
+
+                        <div class="oe_right oe_button_box" name="buttons"/>
+
+                        <group name="data">
+                           <field name="extra_information" />
+                        </group>
+                         <group>
+                                <field name="operating_sector_ids" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="medical_operating_area_action" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Operating Areas</field>
+            <field name="res_model">medical.operating.area</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="domain">[]</field>
+            <field name="context">\{}</field>
+            <field name="search_view_id" ref="medical_operating_area_search" />
+        </record>
+
+    </data>
+</odoo>

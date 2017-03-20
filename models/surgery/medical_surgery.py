@@ -21,7 +21,7 @@ class MedicalSurgery(models.Model):
     operating_room = fields.Char()
     surgery_date_end = fields.Datetime(string='End of Surgery')
     duration = fields.Char()
-    signed_by = fields.Many2one(string='Anesthetist', comodel_name='medical.physician', select=True)
+    signed_by = fields.Many2one(string='Signed By', comodel_name='medical.physician', select=True)
 
     # Surgical Safety Checklist
     massive_bleeeding = fields.Boolean(string='Risk of Massive Bleeding')
@@ -62,7 +62,7 @@ class MedicalSurgery(models.Model):
         if values.get('name', 'New') == 'New':
             values['name'] = self.env['ir.sequence'].next_by_code('medical.procedure') or 'New'
     
-        result = super(MedicalProcedure, self).create(values)
+        result = super(MedicalSurgery, self).create(values)
     
         return result
     

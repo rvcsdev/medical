@@ -96,6 +96,7 @@
         'views/visit/medical_visit_menu.xml',
         'views/surgery/medical_surgery_view.xml',
         'views/surgery/medical_procedure_view.xml',
+        'views/surgery/medical_operating_area_view.xml',
         'views/surgery/medical_surgery_menu.xml', 
     ],
     # only loaded in demonstration mode

@@ -61,6 +61,7 @@ class MedicalPatient(models.Model):
     #     for key, val in res.get('value', {}).items():
     #         setattr(self, key, val)
     #     return res
+    surgery_ids = fields.One2many(string='Surgeries', comodel_name='medical.surgery', inverse_name='patient_id', ondelete='cascade')
 
     @api.one
     def _compute_age(self):
