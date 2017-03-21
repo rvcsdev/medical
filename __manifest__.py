@@ -52,6 +52,7 @@
         'views/medical_patient_view.xml',
         'views/medical_appointment_view.xml',
         'views/medical_specialty_view.xml',
+        'views/medical_ethnic_group_view.xml',
         'security/medical_security.xml',
         'views/medical_menu.xml',
         'views/hospital/medical_hospital_bed_view.xml',

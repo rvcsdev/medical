@@ -9,7 +9,7 @@ from . import medical_patient
 from . import medical_appointment
 from . import medical_specialty
 from . import medical_diagnosis
-
+from . import medical_ethnic_group
 # Medical Hospital
 from . import hospital
 

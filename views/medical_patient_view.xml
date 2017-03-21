@@ -49,9 +49,10 @@
                                     <group>
                                         <field name="blood_type" />
                                         <field name="marital_status" colspan="2"/>
-                                    <group>
+                                    </group>
                                     <group>
                                         <field name="rh_factor" />
+                                        <field name="ethnic_group" />
                                     </group>
                                 </group>
                                 <group string="Contact Information">

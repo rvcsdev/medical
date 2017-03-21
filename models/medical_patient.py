@@ -51,6 +51,8 @@ class MedicalPatient(models.Model):
         ('-', '-'),
     ], string='Rhesus (RH) Factor')
 
+    ethnic_group = fields.Many2one(string='Ethnic Group', comodel_name='medical.ethnic.group')
+
     is_pregnant = fields.Boolean(
         help='Check if the patient is pregnant',
     )

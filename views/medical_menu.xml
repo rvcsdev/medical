@@ -45,10 +45,18 @@
         <!-- Medical Specialty  ( Config/misc/specialty) )--> 
 
         <menuitem id="medical_specialty"
-                  name=" Medical Specialty"
+                  name="Medical Specialty"
                   parent="medical_root_misc"
                   sequence="10"
                   action="medical_specialty_action" />
+
+        <!-- Ethnic Group  ( Config/misc/ethnic_group) )--> 
+
+        <menuitem id="medical_ethnic_group"
+                  name="Ethnic Groups"
+                  parent="medical_root_misc"
+                  sequence="20"
+                  action="medical_ethnic_group_action" />
 
         <!--    Physician Conf    -->
 
