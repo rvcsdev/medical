@@ -45,6 +45,15 @@
                         </group>
                         <notebook>
                             <page string="General Information"> 
+                                <group string="Patient General Information">
+                                    <group>
+                                        <field name="blood_type" />
+                                        <field name="marital_status" colspan="2"/>
+                                    <group>
+                                    <group>
+                                        <field name="rh_factor" />
+                                    </group>
+                                </group>
                                 <group string="Contact Information">
                                     <group>
                                         <label for="street" string="Address"/>
@@ -70,7 +79,6 @@
                                     </group>
                                 </group>
                                 <group  col="4" colspan="4"> 
-                                    <field name="marital_status" colspan="2"/>
                                     <field name="parent_id" colspan="2" string="Legal Representative" domain="[('is_patient','=',True)]"/>
                                 </group>
                                 <group  col="4" colspan="4"> 

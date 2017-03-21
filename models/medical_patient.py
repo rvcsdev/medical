@@ -39,6 +39,18 @@ class MedicalPatient(models.Model):
             ('z', 'law marriage'),
         ])
 
+    blood_type = fields.Selection([
+        ('A', 'A'),
+        ('B', 'B'),
+        ('AB', 'AB'),
+        ('O', 'O'),
+    ], string='Blood Type')
+
+    rh_factor = fields.Selection([
+        ('+', '+'),
+        ('-', '-'),
+    ], string='Rhesus (RH) Factor')
+
     is_pregnant = fields.Boolean(
         help='Check if the patient is pregnant',
     )

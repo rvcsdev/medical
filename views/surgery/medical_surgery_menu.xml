@@ -19,12 +19,16 @@
             action="medical_surgery_action" />
 
         <!-- Operating Areas -->
-        <menuitem id="medical_root_operating_areas" name="Operating Areas"
+        <menuitem id="medical_root_operating_area" name="Operating Areas"
             parent="medical_root_sub" sequence="70" />
-            
+
         <menuitem id="medical_operating_area_menu"
-            parent="medical_root_operating_areas" sequence="10"
+            parent="medical_root_operating_area" sequence="10"
             action="medical_operating_area_action" />
+
+        <menuitem id="medical_operating_sector_menu"
+            parent="medical_root_operating_area" sequence="10"
+            action="medical_operating_sector_action" />
 
     </data>
 </odoo>

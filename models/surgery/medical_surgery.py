@@ -8,7 +8,7 @@ class MedicalSurgery(models.Model):
     patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', required=True, select=True, help='Patient Name')
     # code = fields.Char()
     description = fields.Char()
-    base_condition = fields.Many2one(string='Admission Reason', comodel_name='medical.pathology', select=True)
+    base_condition = fields.Many2one(string='Base Condition', comodel_name='medical.pathology', select=True)
     surgery_classification = fields.Selection([
         ('optional', 'Optional'),
         ('required', 'Required'),
@@ -18,7 +18,7 @@ class MedicalSurgery(models.Model):
     surgery_date_start = fields.Datetime(string='Date of Surgery')
     surgeon = fields.Many2one(string='Surgeon', comodel_name='medical.physician', select=True, help='Select surgeon.')
     anesthetist = fields.Many2one(string='Anesthetist', comodel_name='medical.physician', select=True, help='Select anesthetist.')
-    operating_room = fields.Char()
+    operating_room = fields.Many2one(string='Operating Room', comodel_name='medical.operating.area', select=True)
     surgery_date_end = fields.Datetime(string='End of Surgery')
     duration = fields.Char()
     signed_by = fields.Many2one(string='Signed By', comodel_name='medical.physician', select=True)
@@ -35,8 +35,8 @@ class MedicalSurgery(models.Model):
         ('class2', 'Class 2: Visibility of hard and soft palate, upper portion of tonsils and uvula'),
         ('class3', 'Class 3: Soft and hard palate and base of the uvula are visible'),
         ('class4', 'Only hard palate is visible')
-    ])
-    rcri = fields.Char()
+    ], string='Mallampati Score')
+    rcri_id = fields.Many2one(string='RCRI', comodel_name='medical.rcri', select=True)
     asa_ps = fields.Selection([
         ('ps1', 'PS 1: Normal healty patient'), 
         ('ps2', 'PS 2: Patients with mild systemic disease'),
@@ -44,7 +44,7 @@ class MedicalSurgery(models.Model):
         ('ps4', 'PS 4: Patients with severe systemic disease that is a constant threat to life'),
         ('ps5', 'PS 5: Moribund patients who are not expectedd to survive without the operation'),
         ('ps6', 'PS 6: A declared brain-dead patient who organs are being removed for donor purposes')
-    ])
+    ], string='ASA PS')
 
     procedure_ids = fields.One2many(string='Procedures', comodel_name='medical.surgery.procedure', inverse_name='surgery_id')
 

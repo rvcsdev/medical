@@ -80,11 +80,23 @@
                         </group>
                         <group>
                             <field name="mallampati_score" />
-                            <field name="rcri" />
+                            <field name="rcri_id"/>
                             <field name="asa_ps" />
                         </group>
                         <group string="Procedures">
-                            <field name="procedure_ids" />
+                            <field name="procedure_ids">
+                                <tree>
+                                    <field name="procedure_id" />
+                                    <field name="notes" />
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="surgery_id" />
+                                        <field name="procedure_id" />
+                                        <field name="notes" />
+                                    </group>
+                                </form>
+                            </field>
                         </group>
                         <group string="Details/Incidents">
                             <field name="details" />
@@ -93,6 +105,38 @@
                             <field name="anesthesia_report" />
                         </group>
                     </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="medical_rcri_form" model="ir.ui.view">
+            <field name="name">medical.rcri.form</field>
+            <field name="model">medical.rcri</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="patient_id" />
+                            <field name="physician_id" />
+                        </group>
+                        <group>
+                            <field name="rcri_date" />
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="high_risk_surgery" />
+                            <field name="congestive_heart_disease" />
+                            <field name="cerebrovascular_disease" />
+                            <field name="score" />
+                        </group>
+                        <group>
+                            <field name="ischemic_heart_disease" />
+                            <field name="preoperative_diabetes" />
+                            <field name="preoperative_kidney_disease" />
+                            <field name="rcri_class" />
+                        </group>
+                    </group>
                 </form>
             </field>
         </record>
