@@ -10,6 +10,8 @@ from . import medical_appointment
 from . import medical_specialty
 from . import medical_diagnosis
 from . import medical_ethnic_group
+from . import medical_patient_family
+
 # Medical Hospital
 from . import hospital
 

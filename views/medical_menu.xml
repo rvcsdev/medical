@@ -8,11 +8,18 @@
                   name="Patient"
                   parent="medical_root"
                   sequence="10" />
+
         <menuitem id="medical_patient"
-                  name=" Patients"
+                  name="Patients"
                   parent="medical_patient_root"
                   sequence="10"
                   action="medical_patient_action" />
+        
+        <menuitem id="medical_patient_family"
+                  name="Families"
+                  parent="medical_patient_root"
+                  sequence="20"
+                  action="medical_patient_family_action" />
 
         <!--Appointment-->
 

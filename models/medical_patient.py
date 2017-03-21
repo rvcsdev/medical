@@ -37,7 +37,7 @@ class MedicalPatient(models.Model):
             ('d', 'Divorced'),
             ('x', 'Separated'),
             ('z', 'law marriage'),
-        ])
+        ], required=True, string='Marital Status')
 
     blood_type = fields.Selection([
         ('A', 'A'),
@@ -52,6 +52,30 @@ class MedicalPatient(models.Model):
     ], string='Rhesus (RH) Factor')
 
     ethnic_group = fields.Many2one(string='Ethnic Group', comodel_name='medical.ethnic.group')
+
+    family_id = fields.Many2one(string='Family', comodel_name='medical.patient.family')
+
+    ## Lifestyle
+
+    # Excercise
+    is_excercise = fields.Boolean(string='Excercise')
+    excercise_minutes_per_day = fields.Integer(string='Minutes / Day', default=0)
+
+    # Sleep
+    hours_of_sleep = fields.Integer(string='Hours of Sleep', default=0)
+    sleeps_at_daytime = fields.Boolean(string='Sleeps at Daytime')
+
+    # Diet Info 
+    meals_per_day = fields.Integer(string='Meals Per Day')
+    is_soft_drink = fields.Boolean(string='Soft Drink (Sugar)')
+    is_eat_alone = fields.Boolean(string='Eats Alone')
+    is_salt = fields.Boolean(string='Salt')
+    is_coffee = fields.Boolean(string='Coffee')
+    coffee_cups_per_day = fields.Char(string='Cups Per Day')
+    is_currently_on_diet = fields.Boolean(string='Currently on Diet')
+    diet_info = fields.Char(string='Diet Info')
+
+    lifestyle_info = fields.Text(string='Lifestyle Information')
 
     is_pregnant = fields.Boolean(
         help='Check if the patient is pregnant',

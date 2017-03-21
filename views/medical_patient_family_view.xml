@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="medical_patient_family_view_tree" model="ir.ui.view">
+            <field name="name">medical.patient.family.tree</field>
+            <field name="model">medical.patient.family</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <tree string="Patient Family">
+                    <field name="name" />
+                    <field name="extra_info" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="medical_patient_family_view_form" model="ir.ui.view">
+            <field name="name">medical.patient.family.form</field>
+            <field name="model">medical.patient.family</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Patient Family">
+                    <group>
+                        <field name="name" />
+                        <field name="extra_info" />
+                        <field name="member_ids" />
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="medical_patient_family_view_search" model="ir.ui.view">
+            <field name="name">medical.patient.family.search</field>
+            <field name="model">medical.patient.family</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <search string="Patient Family">
+                    <field name="name" />
+                    <field name="extra_info" />
+                    <newline />
+                    <group expand="0" string="Group By...">
+                        <filter string="name" domain="[]" context="{'group_by':'name'}" />
+                        <filter string="extra_info" domain="[]" context="{'group_by':'extra_info'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="medical_patient_family_action">
+            <field name="name">Patient Family</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">medical.patient.family</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="medical_patient_family_view_search" />
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!--<record model="ir.actions.act_window.view" id="medical_specialty_action_form">
+            <field name="act_window_id" ref="medical_specialty_action" />
+            <field name="sequence" eval="20" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="medical_specialty_view_form" />
+        </record>
+
+        <record model="ir.actions.act_window.view" id="medical_specialty_action_tree">
+            <field name="act_window_id" ref="medical_specialty_action" />
+            <field name="sequence" eval="10" />
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="medical_specialty_view_tree" />
+        </record>-->
+
+    </data>
+</odoo>

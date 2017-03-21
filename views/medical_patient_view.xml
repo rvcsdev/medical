@@ -49,6 +49,7 @@
                                     <group>
                                         <field name="blood_type" />
                                         <field name="marital_status" colspan="2"/>
+                                        <field name="family_id" />
                                     </group>
                                     <group>
                                         <field name="rh_factor" />
@@ -202,6 +203,39 @@
                             </page>
                             <page string="Hospitalizations">
                                 <field name="hospitalization_ids" />
+                            </page>
+                            <page string="Lifestyle">
+                                <group>
+                                    <group string="Physical Excercise">
+                                        <field name="is_excercise" />
+                                        <field name="excercise_minutes_per_day" />
+                                    </group>
+                                    <group string="Sleep">
+                                        <field name="hours_of_sleep" />
+                                        <field name="sleeps_at_daytime" />
+                                    </group>
+                                </group>
+                                <group string="Diet Info">
+                                    <group>
+                                        <field name="meals_per_day" />
+                                        <field name="is_soft_drink" />
+                                    </group>
+                                    <group>
+                                        <field name="is_eat_alone" />
+                                        <field name="is_salt" />
+                                    </group>
+                                    <group>
+                                        <field name="is_coffee" />
+                                        <field name="is_currently_on_diet" />
+                                    </group>
+                                    <group>
+                                        <field name="coffee_cups_per_day" />
+                                        <field name="diet_info" />
+                                    </group>
+                                </group>
+                                <group string="Lifestyle Information">
+                                    <field name="lifestyle_info" />
+                                </group>
                             </page>
                             <page string="Laboratory Tests">
                                 <field name="laboratory_ids" />
