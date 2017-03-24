@@ -29,6 +29,12 @@ class MedicalPatient(models.Model):
         domain="[('is_institution', '=', True)]",
         string='Medical Center'
     )
+    primary_care_doctor = fields.Many2one('medical.physician', string='Primary Care Doctor', select=True)
+    hospitalization_status = fields.Selection([
+        ('outpatient','Outpatient'),
+        ('hospitalized', 'Hospitalized'),
+    ], readonly=True, string='Hospitalization Status')
+    insurance_id = fields.Many2one('medical.insurance', string='Insurance', select=True)
     marital_status = fields.Selection(
         selection=[
             ('s', 'Single'),

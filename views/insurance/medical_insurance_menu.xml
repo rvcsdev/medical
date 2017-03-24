@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- Insurances -->
+        <menuitem id="medical_root_insurance" name="Insurances"
+            parent="medical_root_sub" sequence="80" />
+
+        <menuitem id="medical_insurance_menu"
+            parent="medical_root_insurance" sequence="10"
+            action="medical_insurance_action" />
+
+    </data>
+</odoo>

@@ -42,3 +42,5 @@ from . import visit
 # Medical Surgery
 from . import surgery
 
+# Medical Insurance
+from . import insurance

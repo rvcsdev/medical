@@ -35,12 +35,15 @@
                                  <field name="ref"/>
                                  <field name="identification_code"/>
                                  <field name="medical_center_id"/>
+                                 <field name="primary_care_doctor"/>
+                                 <field name="hospitalization_status"/>
                             </group>
                             <group>
                                  <field name="dob"/>
                                  <field name="dod"/>
                                  <field name="age"/>
                                  <field name="gender"/>
+                                 <field name="insurance_id" />
                             </group>
                         </group>
                         <notebook>
