@@ -26,14 +26,14 @@
                             <field name="hospitalization_id" />
                             <field name="transfer_date" />
                             <field name="transfer_from" />
-                            <field name="transfer_to" string="New Bed"/>
+                            <field name="transfer_to" string="New Bed" domain="[('id','!=',transfer_from)]"/>
                             <field name="transfer_reason" />
                         </group>
                     </sheet>
-                    <!--<footer>
+                    <footer>
                         <button type="object" name="action_transfer" string="Transfer" class="btn-primary"/>
                         <button string="Cancel" class="btn-default" special="cancel"/>
-                    </footer>-->
+                    </footer>
                 </form>
             </field>
         </record>

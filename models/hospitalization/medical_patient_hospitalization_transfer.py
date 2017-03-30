@@ -11,14 +11,8 @@ class MedicalPatientHospitalizationTransfer(models.Model):
     transfer_to = fields.Many2one(string='To', comodel_name='medical.hospital.bed', required=True, select=True, help='Assign new bed to patient.')
     transfer_reason = fields.Text(string='Reason')
 
-    # @api.onchange('transfer_to')
-    # def check_current_bed(self):
-    #     if self.transfer_from == self.transfer_to:
-    #         raise UserError(_("Selected bed is the patient's current bed. Please select a different bed."))
-    #     return True
-
-    # @api.model
-    # def create(self):
-    #     if self.transfer_from == self.transfer_to:
-    #         raise UserError(_("Selected bed is the patient's current bed. Please select a different bed."))
-    #     return True
+    @api.multi
+    def action_transfer(self):
+        hospitalization = self.env['medical.patient.hospitalization'].browse(self.hospitalization_id.id)
+        hospitalization.hospital_bed_id = self.transfer_to
+        return {'type': 'ir.actions.act_window_close'}

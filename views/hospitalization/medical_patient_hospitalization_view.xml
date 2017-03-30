@@ -23,7 +23,7 @@
             <field name="name">medical.patient.hospitalization.tree</field>
             <field name="model">medical.patient.hospitalization</field>
             <field name="arch" type="xml">
-                <tree string="Medical Patient Hospitalization" colors="grey:state=='cancelled';green:state=='discharged';orange:state=='confirmed';blue:state=='draft';red:state=='hospitalized'">
+                <tree string="Medical Patient Hospitalization" colors="grey:state=='cancelled';green:state=='discharged';orange:state=='hospitalized';blue:state=='confirmed';red:state=='hospitalized';red:admission_type=='emergency'">
                     <field name="name" />
                     <field name="patient_id" />
                     <field name="admission_date" />
@@ -72,6 +72,7 @@
                                 <field name="admission_date" />
                                 <field name="attending_physician" />
                                 <field name="admission_type" />
+                                <field name="priority" />
                             </group>
                             <group>
                                 <field name="hospital_bed_id" />

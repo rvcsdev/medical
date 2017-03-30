@@ -3,6 +3,7 @@ from odoo import api, models, fields, _
 class MedicalPatientHospitalization(models.Model):
     _name = 'medical.patient.hospitalization'
     _description = 'Medical Patient Hospitalization'
+    _order = 'priority desc, create_date desc'
 
     name = fields.Char(string='Registration Code', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
     patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', required=True, select=True, help='Patient Name')
@@ -17,8 +18,9 @@ class MedicalPatientHospitalization(models.Model):
         ('elective', 'Elective'),
         ('urgent', 'Urgent'),
         ('emergency', 'Emergency'),
-        ], string='Admission Type')
+        ], string='Admission Type', required=True)
     # admission_reason = fields.Char(string='Admission Reason')
+    priority = fields.Integer()
     admission_reason = fields.Many2one(string='Admission Reason', comodel_name='medical.pathology', select=True)
     extra_info = fields.Text(string='Extra Info')
     transfer_history_ids = fields.One2many(string='Transfer History', comodel_name='medical.patient.hospitalization.transfer', inverse_name='hospitalization_id', readonly=True)
@@ -74,6 +76,19 @@ class MedicalPatientHospitalization(models.Model):
     
         return result
 
+    @api.onchange('admission_type')
+    def _set_priority(self):
+        if self.admission_type == 'routine':
+            self.priority = 1
+        if self.admission_type == 'maternity':
+            self.priority = 2
+        if self.admission_type == 'elective':
+            self.priority = 3
+        if self.admission_type == 'urgent':
+            self.priority = 4
+        if self.admission_type == 'emergency':
+            self.priority = 5
+
     @api.multi
     def action_confirm(self):
         for hospitalization in self:
@@ -94,7 +109,7 @@ class MedicalPatientHospitalization(models.Model):
             vals = {}
             vals['hospitalization_id'] = hospitalization.id
             vals['current_bed'] = hospitalization.hospital_bed_id.id
-            return {
+            transfer = {
                 'type': 'ir.actions.act_window',
                 'name': 'Transfer Bed',
                 'view_type': 'form',    
@@ -107,6 +122,7 @@ class MedicalPatientHospitalization(models.Model):
                 # 'data': vals,
                 'target': 'new',
             }
+            return transfer
 
     @api.multi
     def action_discharge(self):
