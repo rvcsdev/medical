@@ -2,7 +2,6 @@ from odoo import models, fields, api, _
 # from odoo.tools.translate import _
 from dateutil.relativedelta import relativedelta
 
-
 class MedicalPatient(models.Model):
     '''
     The concept of Patient included in medical.
@@ -82,6 +81,88 @@ class MedicalPatient(models.Model):
     diet_info = fields.Char(string='Diet Info')
 
     lifestyle_info = fields.Text(string='Lifestyle Information')
+
+    ## Socioeconomics
+
+    # Main 
+    socioeconomics = fields.Selection([
+        ('1','Lower'),
+        ('2','Lower-Middle'),
+        ('3','Middle'),
+        ('4','Middle-Upper'),
+        ('5','Higher'),
+    ], string='Socioeconomics')
+    housing_conditions = fields.Selection([
+        ('A','Shanty, dificient sanitary conditions'),
+        ('B','Small, crowded but with good sanitary conditions'),
+        ('C','Comfortable and good sanitary conditions'),
+        ('D','Roomy and excellent sanitary conditions'),
+        ('E','Luxury and excellent sanitary conditions'),
+    ], string='Housing Conditions')
+    education_level = fields.Selection([
+        ('I','None'),
+        ('II','Incomplete Primary School'),
+        ('III','Primary School'),
+        ('IV','Incomplete Secondary School'),
+        ('V','Secondary School'),
+        ('VI','University'),
+    ], string='Education Level')
+    occupation = fields.Text()
+    is_work_at_home = fields.Boolean(string='Works at Home')
+    hours_outside_home = fields.Integer(string='Hours Outside Home')
+    is_hostile_area = fields.Boolean(string='Hostile Area')
+    socioeconomics_info = fields.Text(string='Extra Info')
+
+    # Infrastructure 
+    has_sanitary_sewers = fields.Boolean(string='Sanitary Sewers')
+    has_gas_supply = fields.Boolean(string='Gas Supply')
+    has_running_water = fields.Boolean(string='Running Water')
+    has_telephone = fields.Boolean(string='Telephone')
+    has_trash_recollection = fields.Boolean(string='Trash Recollection')
+    has_television = fields.Boolean(string='Television')
+    has_electrical_supply = fields.Boolean(string='Electrical Supply')
+    has_internet = fields.Boolean(string='Internet')
+
+    # Family
+    # Family APGAR
+    help_from_family = fields.Selection([
+        ('0','None'),
+        ('1','Moderately'),
+        ('2','Very Much'),
+    ], string='Help from Family')
+    family_time_sharing = fields.Selection([
+        ('0','None'),
+        ('1','Moderately'),
+        ('2','Very Much'),
+    ], string='Family Time Sharing')
+    family_discussions_on_problems = fields.Selection([
+        ('0','None'),
+        ('1','Moderately'),
+        ('2','Very Much'),
+    ], string='Family Discussions on Problems')
+    family_affection = fields.Selection([
+        ('0','None'),
+        ('1','Moderately'),
+        ('2','Very Much'),
+    ], string='Family Affection')
+    family_decision_making = fields.Selection([
+        ('0','None'),
+        ('1','Moderately'),
+        ('2','Very Much'),
+    ], string='Family Decision Making')
+    score = fields.Integer()
+
+    # Othe Family Issues
+    is_single_parent_family = fields.Boolean(string='Single Parent Family')
+    sexual_abuse = fields.Boolean(string='Sexual Abuse')
+    is_currently_in_prison = fields.Boolean(string='Is currently in Prison')
+    domestic_violence = fields.Boolean(string='Domestic Violence')
+    has_drug_addiction = fields.Boolean(string='Drug Addiction')
+    has_relative_in_prison = fields.Boolean(string='Relative in Prison')
+    has_working_children = fields.Boolean(string='Working Children')
+    school_withdrawal = fields.Boolean(string='School Withdrawal')
+    teenage_pregnancy = fields.Boolean(string='Teenage Pregnancy')
+    has_been_in_prison = fields.Boolean(string='Has Been in Prison')
 
     is_pregnant = fields.Boolean(
         help='Check if the patient is pregnant',

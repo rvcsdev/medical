@@ -198,15 +198,6 @@
                                     </form>
                                 </field>
                             </page>
-                            <page string="Appointments">
-                                <field name="appointment_ids" />
-                            </page>
-                            <page string="Visits">
-                                <field name="visit_ids" />
-                            </page>
-                            <page string="Hospitalizations">
-                                <field name="hospitalization_ids" />
-                            </page>
                             <page string="Lifestyle">
                                 <group>
                                     <group string="Physical Excercise">
@@ -240,6 +231,68 @@
                                     <field name="lifestyle_info" />
                                 </group>
                             </page>
+                            <page string="Socioeconomics">
+                                <group string="Main">
+                                    <group>
+                                        <field name="socioeconomics" />
+                                        <field name="housing_conditions" />
+                                        <field name="is_work_at_home" />
+                                        <field name="hours_outside_home" />
+                                    </group>
+                                    <group>
+                                        <field name="education_level" />
+                                        <field name="occupation" />
+                                        <field name="is_hostile_area" />
+                                    </group>
+                                    <field name="socioeconomics_info" />
+                                </group>
+                                <group string="Infrastructure">
+                                    <group>
+                                        <field name="has_sanitary_sewers" />
+                                        <field name="has_gas_supply" />
+                                        <field name="has_running_water" />
+                                        <field name="has_telephone" />
+                                    </group>
+                                    <group>
+                                        <field name="has_trash_recollection" />
+                                        <field name="has_television" />
+                                        <field name="has_electrical_supply" />
+                                        <field name="has_internet" />
+                                    </group>
+                                </group>
+                                <group>
+                                    <group string="Family APGAR">
+                                        <field name="help_from_family" />
+                                        <field name="family_time_sharing" />
+                                        <field name="family_discussions_on_problems" />
+                                        <field name="family_affection" />
+                                        <field name="family_decision_making" />
+                                        <field name="score" />
+                                    </group>
+                                    <group string="Other Family Issues">
+                                        <field name="is_single_parent_family" />
+                                        <field name="sexual_abuse" />
+                                        <field name="is_currently_in_prison" />
+                                        <field name="domestic_violence" />
+                                        <field name="has_drug_addiction" />
+                                        <field name="has_relative_in_prison" />
+                                        <field name="has_working_children" />
+                                        <field name="school_withdrawal" />
+                                        <field name="teenage_pregnancy" />
+                                        <field name="has_been_in_prison" />
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Appointments">
+                                <field name="appointment_ids" />
+                            </page>
+                            <page string="Visits">
+                                <field name="visit_ids" />
+                            </page>
+                            <page string="Hospitalizations">
+                                <field name="hospitalization_ids" />
+                            </page>
+                            
                             <page string="Laboratory Tests">
                                 <field name="laboratory_ids" />
                             </page>

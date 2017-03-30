@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from odoo import fields, models, api, _
 
 
@@ -13,10 +12,8 @@ class MedicalPrescriptionOrder(models.Model):
 
     # name = fields.Char(required=True, default=_get_default_name)
     name = fields.Char(string='Prescription ID', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
-    patient_id = fields.Many2one(
-        comodel_name='medical.patient', string='Patient', required=True)
-    physician_id = fields.Many2one(
-        comodel_name='medical.physician', string='Physician', required=True)
+    patient_id = fields.Many2one(comodel_name='medical.patient', string='Patient', required=True)
+    physician_id = fields.Many2one('medical.physician', string='Physician', required=True, select=True)
     partner_id = fields.Many2one(
         comodel_name='res.partner', string='Pharmacy')
     prescription_order_line_ids = fields.One2many(
