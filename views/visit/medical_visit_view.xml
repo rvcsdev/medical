@@ -32,6 +32,8 @@
                         
                         <!--<button name="action_view_invoice" string="View Invoice" type="object" states="done" attrs="{'invisible':[('is_invoiced','=',False)]}" />-->
 
+                        <!--<button name="action_create_hospitalization" string="Admit" class="btn-primary" type="object" attrs="{'invisible': ['|','|',('state','!=','done')]}" />-->
+
                         <button name="action_view_invoice" string="View Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','done'),('is_invoiced', '=', False)]}" />
 
                         <button name="action_create_invoice" string="Create Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','done'),('is_invoiced', '=', True)]}" />

@@ -183,5 +183,17 @@
             <field name="context">{}</field>
         </record>
 
+        <!--<record model="ir.actions.act_window" id="medical_patient_disease_allergy_action">
+            <field name="name">Patient Allergies</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">medical.patient.disease</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="medical_patient_view_disease_tree" />
+            <field name="search_view_id" ref="medical_patient_view_disease_search" />
+            <field name="domain">[('is_allergy', '=', 'True')]</field>
+            <field name="context">{}</field>
+        </record>-->
+
     </data>
 </odoo>

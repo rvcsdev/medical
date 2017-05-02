@@ -4,7 +4,7 @@ from odoo import fields, models
 
 class MedicalPrescriptionOrderLine(models.Model):
     _name = 'medical.prescription.order.line'
-    _inherit = ['abstract.medical.medication']
+    # _inherit = ['abstract.medical.medication']
     _inherits = {'medical.patient.medication': 'medical_medication_id'}
     _rec_name = 'medical_medication_id'
 

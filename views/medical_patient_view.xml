@@ -20,9 +20,12 @@
              <field name="model">medical.patient</field>
              <field name="arch" type="xml">
               <form string="Patient">
-                    <header/>
+                    <header>
+                        <!--<div class="oe_right oe_button_box" name="buttons"/>-->
+                    </header>
                     <sheet>
                         <div class="oe_right oe_button_box" name="buttons"/>
+                        <div class="oe_button_box o_full" name="button_box"/>
                         
                         <field name="image" widget='image' class="oe_left oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
 

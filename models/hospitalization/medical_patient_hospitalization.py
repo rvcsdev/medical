@@ -7,8 +7,8 @@ class MedicalPatientHospitalization(models.Model):
 
     name = fields.Char(string='Registration Code', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))
     patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', required=True, select=True, help='Patient Name')
-    hospital_bed_id = fields.Many2one(string='Hospital Bed', comodel_name='medical.hospital.bed', required=True, select=True, help='Assign bed to patient.')
-    admission_date = fields.Datetime(string='Admission Date')
+    hospital_bed_id = fields.Many2one(string='Hospital Bed', comodel_name='medical.hospital.bed', select=True, help='Assign bed to patient.')
+    admission_date = fields.Datetime(string='Admission Date', default=fields.Datetime.now)
     expected_discharge_date = fields.Datetime(string='Expected Discharge Date')
     attending_physician = fields.Many2one(string='Attending Physician', comodel_name='medical.physician', select=True, help='Select attending physician.')
     operating_physician = fields.Many2one(string='Operating Physician', comodel_name='medical.physician', select=True, help='Select operating physician.')
@@ -18,7 +18,7 @@ class MedicalPatientHospitalization(models.Model):
         ('elective', 'Elective'),
         ('urgent', 'Urgent'),
         ('emergency', 'Emergency'),
-        ], string='Admission Type', required=True)
+        ], string='Admission Type', default='routine',required=True)
     # admission_reason = fields.Char(string='Admission Reason')
     priority = fields.Integer()
     admission_reason = fields.Many2one(string='Admission Reason', comodel_name='medical.pathology', select=True)

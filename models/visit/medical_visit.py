@@ -14,7 +14,7 @@ class MedicalVisit(models.Model):
     consultations = fields.Many2one(string='Consultation Service', comodel_name='product.product', required=True, ondelete="cascade", domain="[('type', '=', 'service')]")
     scheduled_start  = fields.Datetime(string="Scheduled Start", required=True)
     scheduled_end  = fields.Datetime(string="Scheduled End")
-    actual_start  = fields.Datetime(string="Actual Start", required=True)
+    actual_start  = fields.Datetime(string="Actual Start")
     actual_end  = fields.Datetime(string="Actual End")
     extra_information = fields.Char(string="Extra Information")
     is_invoice_exempt = fields.Boolean()
@@ -83,6 +83,27 @@ class MedicalVisit(models.Model):
             visit.state = 'done'
 
         return True
+
+    @api.multi
+    def action_create_hospitalization(self):
+        for record in self:
+            hospitalization_id = self.env['medical.patient.hospitalization'].create({
+                'patient_id': self.patient_id.id,
+                'attending_physician': self.physician_id.id,
+            })
+
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Patient Hospitalization',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'medical.patient.hospitalization',
+            'res_id': hospitalization_id.id,
+            'view_id': self.env.ref('medical.medical_appointment_view_form').id,
+            # 'domain': "[('type','in',('out_invoice', 'out_refund'))]",
+            # 'context': "{'type':'out_invoice', 'journal_type': 'sale'}",
+            'target': 'current',
+        }
 
     @api.multi
     def action_create_invoice(self):

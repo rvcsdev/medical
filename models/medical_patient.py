@@ -41,8 +41,8 @@ class MedicalPatient(models.Model):
             ('w', 'Widowed'),
             ('d', 'Divorced'),
             ('x', 'Separated'),
-            ('z', 'law marriage'),
-        ], required=True, string='Marital Status')
+            ('z', 'Law Marriage'),
+        ], string='Marital Status')
 
     blood_type = fields.Selection([
         ('A', 'A'),
@@ -208,7 +208,7 @@ class MedicalPatient(models.Model):
                 delta.months) + _('m ') + str(delta.days) + _('d')\
                 + deceased
         else:
-            years_months_days = _('No DoB !')
+            years_months_days = _(' ')
         self.age = years_months_days
 
     @api.multi

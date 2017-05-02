@@ -6,9 +6,9 @@ class MedicalPrescriptionOrder(models.Model):
     _name = 'medical.prescription.order'
     _description = 'Medical Prescription Order'
 
-    @api.model
-    def _get_default_name(self):
-        return self.env['ir.sequence'].get('medical.prescription.order')
+    # @api.model
+    # def _get_default_name(self):
+    #     return self.env['ir.sequence'].get('medical.prescription.order')
 
     # name = fields.Char(required=True, default=_get_default_name)
     name = fields.Char(string='Prescription ID', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'))

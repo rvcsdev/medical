@@ -28,6 +28,8 @@
             <field name="arch" type="xml">
                 <form string="Medical Appointment"  version="7.0">
                     <header>
+                        <button name="action_create_visit" string="Create Visit" class="btn-primary" type="object" attrs="{'invisible': ['|','|',('appointment_type','!=','outpatient'),('current_stage','!=',2)]}" />
+                        <!--<button name="action_create_hospitalization" string="Create Hospitalization" class="btn-primary" type="object" attrs="{'invisible': ['|','|',('appointment_type','!=','inpatient'),('current_stage','!=',2)]}" />-->
                         <field name="stage_id" widget="statusbar" clickable="True"
                                 options="{'fold_field': 'fold'}"/>
                     </header>
@@ -43,6 +45,7 @@
                             <field name="alias" />
                             <field name="appointment_type" />
                             <field name="urgency" />
+                            <field name="current_stage" invisible="1" />
                         </group>
                         <notebook>
                             <page string="Main">
