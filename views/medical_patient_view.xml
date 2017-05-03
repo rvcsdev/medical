@@ -286,22 +286,22 @@
                                     </group>
                                 </group>
                             </page>
-                            <page string="Appointments">
+                            <!--<page string="Appointments">
                                 <field name="appointment_ids" />
-                            </page>
-                            <page string="Visits">
+                            </page>-->
+                            <!--<page string="Visits">
                                 <field name="visit_ids" />
-                            </page>
-                            <page string="Hospitalizations">
+                            </page>-->
+                            <!--<page string="Hospitalizations">
                                 <field name="hospitalization_ids" />
-                            </page>
+                            </page>-->
                             
-                            <page string="Laboratory Tests">
+                            <!--<page string="Laboratory Tests">
                                 <field name="laboratory_ids" />
-                            </page>
-                            <page string="Surgeries">
+                            </page>-->
+                            <!--<page string="Surgeries">
                                 <field name="surgery_ids" />
-                            </page>
+                            </page>-->
                         </notebook> 
                      </sheet>
                     <div name="configurator" class="oe_form_sheetbg" groups="medical.group_medical_configurator">

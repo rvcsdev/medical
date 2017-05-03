@@ -32,3 +32,5 @@ class MedicalLabTestType(models.Model):
         ('name_uniq', 'UNIQUE(name)', 'The lab test name must be unique'),
         ('code_uniq', 'UNIQUE(code)', 'The lab test code must be unique'),
     ]
+
+    sample_id = fields.Many2one('medical.lab.test.type.sample', string='Sample', required=True)

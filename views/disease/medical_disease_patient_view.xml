@@ -9,7 +9,7 @@
                 <xpath expr="//div[@name='button_box']" position="inside">
                     <button
                         name="%(medical.medical_patient_disease_action)d"
-                        type="action" class="oe_stat_button" icon="fa-list"
+                        type="action" class="oe_stat_button" icon="fa-heartbeat"
                         context="{'search_default_patient_id': active_id}">
                         <field name="count_disease_ids" widget="statinfo" string="Diseases/Allergies"/>
                     </button>

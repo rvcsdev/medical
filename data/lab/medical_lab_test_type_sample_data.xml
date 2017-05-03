@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2016 LasLabs Inc.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+
+<odoo noupdate="1">
+
+    <record model="medical.lab.test.type.sample" id="Sample1">
+        <field name="name">Blood</field>
+        <field name="abbreviation">Blood</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample2">
+        <field name="name">CSF</field>
+        <field name="abbreviation">CSF</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample3">
+        <field name="name">Other Samples</field>
+        <field name="abbreviation">Other</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample4">
+        <field name="name">Pericardial Fluid</field>
+        <field name="abbreviation">Pericardial</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Peritoneal Fluid</field>
+        <field name="abbreviation">Peritoneal</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Pleural Fluid</field>
+        <field name="abbreviation">Pleural</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Pus</field>
+        <field name="abbreviation">Pus</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Semen</field>
+        <field name="abbreviation">Semen</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Serum</field>
+        <field name="abbreviation">Serum</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Slit Skin</field>
+        <field name="abbreviation">Slit Skin</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Sputum</field>
+        <field name="abbreviation">Sputum</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Stool</field>
+        <field name="abbreviation">Stool</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Synovial Fluid</field>
+        <field name="abbreviation">Synovial</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Test Lab Sample</field>
+        <field name="abbreviation">Test Lab</field>
+    </record>
+    <record model="medical.lab.test.type.sample" id="Sample5">
+        <field name="name">Urine</field>
+        <field name="abbreviation">Urine</field>
+    </record>
+
+</odoo>

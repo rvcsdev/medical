@@ -153,5 +153,17 @@
             <field name="search_view_id" ref="medical_surgery_search" />
         </record>
 
+         <!-- Surgery Button in Patient Form -->
+         <record id="medical_surgery_patient_view_form" model="ir.ui.view">
+            <field name="name">medical.patient.form.surgery</field>
+            <field name="model">medical.patient</field>
+            <field name="inherit_id" ref="medical.medical_patient_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(medical.medical_surgery_action)d" type="action" class="oe_stat_button" icon="fa-list" context="{'search_default_patient_id': active_id}" string="Surgeries"></button>
+                </xpath>
+            </field>
+        </record>
+
     </data>
 </odoo>

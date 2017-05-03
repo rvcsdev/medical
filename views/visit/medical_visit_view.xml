@@ -32,14 +32,14 @@
                         
                         <!--<button name="action_view_invoice" string="View Invoice" type="object" states="done" attrs="{'invisible':[('is_invoiced','=',False)]}" />-->
 
-                        <!--<button name="action_create_hospitalization" string="Admit" class="btn-primary" type="object" attrs="{'invisible': ['|','|',('state','!=','done')]}" />-->
-
                         <button name="action_view_invoice" string="View Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','done'),('is_invoiced', '=', False)]}" />
 
                         <button name="action_create_invoice" string="Create Invoice" type="object" attrs="{'invisible': ['|','|',('state','!=','done'),('is_invoiced', '=', True)]}" />
 
                         <button name="action_print_prescription" string="Print Prescription" type="object" states="done" />
                         <!--<button name="action_discharge" string="Discharge" type="object" states="hospitalized" />-->
+
+                        <button name="action_create_hospitalization" string="For Admission" type="object" attrs="{'invisible': ['|','|',('state','!=','done')]}" />
 
                         <button name="action_cancel" string="Cancel" type="object" states="draft,confirmed" />
 
@@ -232,6 +232,18 @@
             <field name="view_mode">tree,form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">Create the first visit</p>
+            </field>
+        </record>
+
+        <!-- Visit Button in Patient Form -->
+         <record id="medical_visit_patient_view_form" model="ir.ui.view">
+            <field name="name">medical.patient.form.visit</field>
+            <field name="model">medical.patient</field>
+            <field name="inherit_id" ref="medical.medical_patient_view_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(medical.medical_visit_action)d" type="action" class="oe_stat_button" icon="fa-user-md" context="{'search_default_patient_id': active_id}" string="Visits"></button>
+                </xpath>
             </field>
         </record>
     </data>

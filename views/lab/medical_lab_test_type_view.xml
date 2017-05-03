@@ -9,8 +9,9 @@
             <form string="Lab Test Type">
                 <sheet>
                     <group name="meta">
-                        <field name="name" />
+                        <field name="sample_id" />
                         <field name="code" />
+                        <field name="name" />
                         <field name="product_id" />
                     </group>
                     <notebook>

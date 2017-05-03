@@ -29,7 +29,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'product', 'account', 'account_accountant', 'point_of_sale', 'website', 'im_livechat', 'report'],
+    'depends': ['base', 'web', 'document', 'product', 'account', 'account_accountant', 'point_of_sale', 'website', 'im_livechat', 'report'],
 
     # always loaded
     'data': [
@@ -37,12 +37,14 @@
         # 'views/views.xml',
         # 'views/templates.xml',
         # 'views/medical_sequence.xml',
+        'views/assets.xml',
         'data/ir_sequence_data.xml',
         'data/medical_ethnic_group_data.xml',
         'data/medicament/medical_medicament_drug_form_data.xml',
         'data/medicament/medical_medicament_drug_route_data.xml',
         'data/medication/medical_medication_dosage_data.xml',
         'data/appointment/medical_appointment_data.xml',
+        'data/lab/medical_lab_test_type_sample_data.xml',
         'report/lab/medical_lab_test_report.xml',
         'report/lab/medical_lab_test_report_template.xml',
         'report/prescription/medical_prescription_order_report.xml',
@@ -112,6 +114,9 @@
         # 'demo/medical_medicament_demo.xml',
         # 'demo/medical_patient_demo.xml',
         'demo/disease/medical_pathology_category_demo.xml',
+    ],
+    'qweb': [
+        'static/src/xml/web_widget_image_webcam.xml',
     ],
     'installable': True,
     'application': True,

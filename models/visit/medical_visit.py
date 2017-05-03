@@ -90,6 +90,7 @@ class MedicalVisit(models.Model):
             hospitalization_id = self.env['medical.patient.hospitalization'].create({
                 'patient_id': self.patient_id.id,
                 'attending_physician': self.physician_id.id,
+                'priority': 1,
             })
 
         return {
@@ -99,7 +100,7 @@ class MedicalVisit(models.Model):
             'view_mode': 'form',
             'res_model': 'medical.patient.hospitalization',
             'res_id': hospitalization_id.id,
-            'view_id': self.env.ref('medical.medical_appointment_view_form').id,
+            'view_id': self.env.ref('medical.medical_patient_hospitalization_form').id,
             # 'domain': "[('type','in',('out_invoice', 'out_refund'))]",
             # 'context': "{'type':'out_invoice', 'journal_type': 'sale'}",
             'target': 'current',

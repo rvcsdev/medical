@@ -8,8 +8,14 @@ class MedicalLabTestCriterion(models.Model):
     _order = 'sequence'
 
     name = fields.Char(string='Test Name', size=128, required=True)
+    sequence = fields.Integer(
+        default=5,
+        required=True,
+    )
     description = fields.Text()
     result_expect = fields.Char(string='Normal Range')
+    lower_limit = fields.Float(string='Lower Limit')
+    upper_limit = fields.Float(string='Upper Limit')
     uom_id = fields.Many2one(string='Unit of Measure', comodel_name='product.uom')
     test_type_ids = fields.Many2many(
         string='Test Types',
@@ -17,7 +23,6 @@ class MedicalLabTestCriterion(models.Model):
         ondelete='restrict',
         help='This criterion is related to these test types.',
     )
-    sequence = fields.Integer(
-        default=5,
-        required=True,
-    )
+    is_warning = fields.Boolean(string='Warning')
+    is_excluded = fields.Boolean(string='Excluded')
+    
