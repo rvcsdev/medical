@@ -7,6 +7,8 @@ class MedicalLab(models.Model):
 
     name = fields.Char(string='Request ID', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'), help='Unique identifier for lab.')
 
+    request_sample_id = fields.Many2one(string='Select Sample', comodel_name='medical.lab.test.type.sample')
+
     test_type_id = fields.Many2one(string='Test Type', comodel_name='medical.test.type', help='Lab test type.')
 
     patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', ondelete='restrict', required=True)
@@ -63,3 +65,10 @@ class MedicalLab(models.Model):
     @api.multi
     def action_cancel(self):
         self.write({'state': 'cancelled'})
+
+    @api.onchange('request_sample_id')
+    def onchange_place(self):
+        res = {}
+        if self.request_sample_id:
+            res['domain'] = {'test_type_id': [('sample_id', '=', self.request_sample_id.id)]}
+        return res

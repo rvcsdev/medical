@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="medical_lab_test_criteria_view_form" model="ir.ui.view">
+        <field name="name">Lab Test Criteria Form</field>
+        <field name="model">medical.test.criteria</field>
+        <field name="arch" type="xml">
+            <form string="Lab Test Criteria">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sequence" />
+                            <field name="name" />
+                            <field name="lower_limit" />
+                            <field name="uom_id" />
+                        </group>
+                        <group>
+                            <field name="upper_limit" />
+                            <field name="is_warning" />
+                            <field name="is_excluded" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="medical_lab_test_criteria_view_tree" model="ir.ui.view">
+        <field name="name">Lab Test Criteria Tree</field>
+        <field name="model">medical.test.criteria</field>
+        <field name="arch" type="xml">
+            <tree string="Lab Test Criteria">
+                <field name="sequence" />
+                <field name="name" />
+                <field name="lower_limit" />
+                <field name="upper_limit" />
+                <field name="uom_id" />
+                <field name="is_warning" />
+                <field name="is_excluded" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="medical_lab_test_criteria_view_search" model="ir.ui.view">
+        <field name="name">Lab Test Criteria Search</field>
+        <field name="model">medical.test.criteria</field>
+        <field name="arch" type="xml">
+            <search string="Search Lab Test Criteria">
+                <field name="name" />
+                <field name="sequence" />
+                <field name="lower_limit" />
+                <field name="upper_limit" />
+                <field name="uom_id" />
+                <field name="is_warning" />
+                <field name="is_excluded" />
+            </search>
+        </field>
+    </record>
+
+    <record id="medical_lab_test_criteria_action" model="ir.actions.act_window">
+        <field name="name">Lab Test Criteria Action</field>
+        <field name="res_model">medical.test.criteria</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

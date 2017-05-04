@@ -20,7 +20,8 @@
                         <div class="oe_right oe_button_box" name="buttons"/>
                         <group name="meta">
                             <group name="test">
-                                <field name="test_type_id" />
+                                <field name="request_sample_id" />
+                                <field name="test_type_id"/>
                                 <field name="date_perform" />
                                 <field name="date_request" />
                                 <field name="date_receive" />

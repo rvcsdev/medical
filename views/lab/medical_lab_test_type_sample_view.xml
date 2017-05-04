@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <record id="medical_lab_test_type_sample_view_form" model="ir.ui.view">
+        <field name="name">Lab Test Test Sample Form</field>
+        <field name="model">medical.lab.test.type.sample</field>
+        <field name="arch" type="xml">
+            <form string="Lab Test Type Sample">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="abbreviation" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="medical_lab_test_type_sample_view_tree" model="ir.ui.view">
+        <field name="name">Lab Test Type Sample Tree</field>
+        <field name="model">medical.lab.test.type.sample</field>
+        <field name="arch" type="xml">
+            <tree string="Lab Test Type Sample">
+                <field name="name" />
+                <field name="abbreviation" />
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="medical_lab_test_type_sample_view_search" model="ir.ui.view">
+        <field name="name">Lab Test Type Sample Search</field>
+        <field name="model">medical.lab.test.type.sample</field>
+        <field name="arch" type="xml">
+            <search string="Search Lab Test Type Sample">
+                <field name="name" />
+                <field name="abbreviation" />
+            </search>
+        </field>
+    </record>
+
+    <record id="medical_lab_test_type_sample_action" model="ir.actions.act_window">
+        <field name="name">Lab Test Type Sample Action</field>
+        <field name="res_model">medical.lab.test.type.sample</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

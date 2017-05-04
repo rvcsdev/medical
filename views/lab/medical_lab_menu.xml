@@ -34,5 +34,27 @@
               action="medical_lab_request_action_draft"
               sequence="30"
               />
+
+     <!-- Configuration -->
+    <menuitem id="medical_root_lab" name="Laboratory"
+            parent="medical_root_sub" sequence="90" />
+
+    <menuitem id="medical_lab_test_type_sample" 
+            name="Laboratory Test Type Sample" 
+            parent="medical_root_lab" 
+            action="medical_lab_test_type_sample_action" 
+            sequence="10" />
+
+    <menuitem id="medical_lab_test_type" 
+            name="Laboratory Test Type" 
+            parent="medical_root_lab" 
+            action="medical_lab_test_type_action" 
+            sequence="20" />
+
+    <menuitem id="medical_lab_test_criteria" 
+            name="Laboratory Test Criteria" 
+            parent="medical_root_lab" 
+            action="medical_lab_test_criteria_action" 
+            sequence="30" />
     
 </odoo>

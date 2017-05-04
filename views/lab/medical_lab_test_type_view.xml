@@ -38,6 +38,8 @@
             <tree string="Lab Test Types">
                 <field name="name" />
                 <field name="code" />
+                <field name="sample_id" />
+                <field name="product_id" />
             </tree>
         </field>
     </record>

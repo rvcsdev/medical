@@ -24,43 +24,43 @@
         <field name="name">Peritoneal Fluid</field>
         <field name="abbreviation">Peritoneal</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample6">
         <field name="name">Pleural Fluid</field>
         <field name="abbreviation">Pleural</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample7">
         <field name="name">Pus</field>
         <field name="abbreviation">Pus</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample8">
         <field name="name">Semen</field>
         <field name="abbreviation">Semen</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample9">
         <field name="name">Serum</field>
         <field name="abbreviation">Serum</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample10">
         <field name="name">Slit Skin</field>
         <field name="abbreviation">Slit Skin</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample11">
         <field name="name">Sputum</field>
         <field name="abbreviation">Sputum</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample12">
         <field name="name">Stool</field>
         <field name="abbreviation">Stool</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample13">
         <field name="name">Synovial Fluid</field>
         <field name="abbreviation">Synovial</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample14">
         <field name="name">Test Lab Sample</field>
         <field name="abbreviation">Test Lab</field>
     </record>
-    <record model="medical.lab.test.type.sample" id="Sample5">
+    <record model="medical.lab.test.type.sample" id="Sample15">
         <field name="name">Urine</field>
         <field name="abbreviation">Urine</field>
     </record>
