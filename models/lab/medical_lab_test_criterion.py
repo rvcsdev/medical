@@ -12,7 +12,7 @@ class MedicalLabTestCriterion(models.Model):
         default=5,
         required=True,
     )
-    description = fields.Text()
+    # description = fields.Text()
     result_expect = fields.Char(string='Normal Range')
     lower_limit = fields.Float(string='Lower Limit')
     upper_limit = fields.Float(string='Upper Limit')

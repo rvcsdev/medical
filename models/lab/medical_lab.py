@@ -7,9 +7,9 @@ class MedicalLab(models.Model):
 
     name = fields.Char(string='Request ID', required=True, copy=False, readonly=True, index=True, default=lambda self: _('New'), help='Unique identifier for lab.')
 
-    request_sample_id = fields.Many2one(string='Select Sample', comodel_name='medical.lab.test.type.sample')
+    request_sample_id = fields.Many2one(string='Select Sample', comodel_name='medical.lab.test.type.sample', required=True)
 
-    test_type_id = fields.Many2one(string='Test Type', comodel_name='medical.test.type', help='Lab test type.')
+    test_type_id = fields.Many2one(string='Test Type', comodel_name='medical.test.type', help='Lab test type.', required=True)
 
     patient_id = fields.Many2one(string='Patient', comodel_name='medical.patient', ondelete='restrict', required=True)
 
@@ -55,20 +55,42 @@ class MedicalLab(models.Model):
     
         return result
 
+    # @api.multi
+    # def action_done(self):
+    #     for lab in self:
+    #         lab.state = 'done'
+
+    #     return True
+
     @api.multi
-    def action_done(self):
-        for lab in self:
-            lab.state = 'done'
+    def action_create_result(self):
+        for record in self:
+            if record.test_type_id:
+                criterion_ids = self.env['medical.test.criteria'].search([('test_type_ids', '=', record.test_type_id.id)], order='sequence')
+                for item in criterion_ids:
+                    criteria = self.env['medical.test.criteria'].browse(item.id)
+                    # criteria_id = self.env['medical.test.criteria'].browse(criteria.id)
+                    if criteria.is_excluded == False: 
+                        criteria_id = self.env['medical.lab.test.result'].create({
+                            'criterion_id': criteria.id,
+                            'name': criteria.name,
+                            'sequence': criteria.sequence,
+                            'lower_limit': criteria.lower_limit,
+                            'upper_limit': criteria.upper_limit,
+                            'uom_id': criteria.uom_id.id,
+                            'is_warning': criteria.is_warning,
+                            'lab_id': record.id,
+                        })
+                        # return True
+        return True
+
+    @api.multi
+    def action_confirm_result(self):
+        for record in self:
+            record.state = 'done'
 
         return True
 
     @api.multi
     def action_cancel(self):
         self.write({'state': 'cancelled'})
-
-    @api.onchange('request_sample_id')
-    def onchange_place(self):
-        res = {}
-        if self.request_sample_id:
-            res['domain'] = {'test_type_id': [('sample_id', '=', self.request_sample_id.id)]}
-        return res

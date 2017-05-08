@@ -8,7 +8,9 @@
             <field name="arch" type="xml">
                 <form string="Laboratory Test">
                     <header>
-                        <button name="action_done" string="Done" type="object" states="draft" class="btn-primary" />
+                        <!--<button name="action_confirm_result" string="Confirm Result" type="object" class="btn-primary" attrs="{'invisible' :[('result_ids','=',[])]}" />-->
+                        <button name="action_confirm_result" string="Confirm Result" type="object" class="btn-primary" states="draft" />
+                        <button name="action_create_result" string="Create Result" type="object" states="draft" />
                         <button name="action_cancel" string="Cancel" type="object" states="draft" />
                         <field name="state" widget="statusbar" options="{'fold_field': 'fold'}" />
                     </header>
@@ -36,29 +38,26 @@
                             <page string="Results" name="page_test">
                                 <group>
                                     <field name="result_ids" nolabel="1">
-                                        <tree editable="top" string="Test Cases">
-                                            <field name="sequence" />
-                                            <field name="name" />
+                                        <tree editable="top" string="Test Cases" colors="red:is_warning==True;">
+                                            <field name="sequence" readonly="True" />
+                                            <field name="is_warning" readonly="True" />
+                                            <field name="name" readonly="True" />
+                                            <field name="lower_limit" readonly="True" />
+                                            <field name="upper_limit" readonly="True" />
+                                            <field name="uom_id" readonly="True" />
                                             <field name="result_actual" />
-                                            <field name="result_expect" />
-                                            <field name="uom_id" />
+                                            <!--<field name="result_expect" />-->
+                                            <field name="notes" />
                                         </tree>
                                         <form string="Test Cases">
                                             <group>
                                                 <field name="criterion_id" />
-                                                <field name="name"
-                                                       readonly="True"
-                                                       />
-                                                <field name="description"
-                                                       readonly="True"
-                                                       />
+                                                <field name="sequence" />
+                                                <field name="name" />
+                                                <field name="lower_limit" />
+                                                <field name="upper_limit" />
+                                                <field name="uom_id" />
                                                 <field name="result_actual" />
-                                                <field name="result_expect"
-                                                       readonly="True"
-                                                       />
-                                                <field name="uom_id"
-                                                       readonly="True"
-                                                       />
                                                 <field name="notes" />
                                             </group>
                                         </form>
